@@ -1,0 +1,33 @@
+    $errors = array();
+    if (empty($data['MaSv'])){
+        $errors['MaSv'] = 'Chưa nhập tên sinh vien';
+    }    
+    if (empty($data['HoTen'])){
+        $errors['HoTen'] = 'Chưa nhập tên sinh vien';
+    }
+    
+    if (empty($data['GioiTinh'])){
+        $errors['GioiTinh'] = 'Chưa nhập giới tính sinh vien';
+    }
+    if (!$errors){
+        add_student($data['MaSv'] , $data['HoTen'], $data['GioiTinh'], $data['CMND'], $data['GroupID'], $data['MaCn'], $data['email']);
+
+
+
+ 					$sql="select * from sinhvien where MaSv='$masv'";
+					$kt=mysqli_query($conn, $sql);
+
+					if(mysqli_num_rows($kt)  > 0){
+						echo "Tài khoản đã tồn tại";}
+					
+					else{add_student($masv , $name, $sex, $birthday, $cmnd, $groupid, $major, $email);}
+
+
+	$sql="select * from sinhvien where MaSv='$masv'";
+	$kt=mysqli_query($conn, $sql);
+ 	$sql="select * from sinhvien where MaSv='$data['MaSv']'  or email ='$data['email']' or CMND ='$data['CMND']'";
+	$kt=mysqli_query($conn, $sql);
+
+                        //<input onclick="window.location = 'student-edit.php?id=<?php echo $item['MaSv']; ?>'" type="button" value="Sửa"/>
+                        //<input type="hidden" name="masv" value="<?php echo $item['MaSv']; ?>"/>
+                        //<input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>

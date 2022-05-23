@@ -1,0 +1,6 @@
+SELECT b.MaSv, b.MaKhoaHoc, m.MaMon, m.TenMon, b.DiemQuaTrinh, b.DiemThi1, b.DiemThi2, b.DiemTongKet, m.tinchi
+FROM bangdiem b
+INNER JOIN course c
+    on b.MaKhoaHoc = c.id
+INNER JOIN monhoc m
+    on m.MaMon = c.MaMon  WHERE b.MaSv ='a37114'

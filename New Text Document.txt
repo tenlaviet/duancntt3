@@ -1,0 +1,5 @@
+                    <form method="post" action="student-delete.php">
+                        <input onclick="window.location = 'student-edit.php?id=<?php echo $item['sv_id']; ?>'" type="button" value="Sửa"/>
+                        <input type="hidden" name="id" value="<?php echo $item['sv_id']; ?>"/>
+                        <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
+                    </form>
