@@ -47,9 +47,9 @@ body {
 }
 
 fieldset {
-    border: 0;
-    color: white;
-    margin: 25px 0 -100px 0;
+  border: 0;
+  color: white;
+  margin: 25px 0 -100px 0;
 }
 
 legend {
@@ -62,15 +62,15 @@ legend {
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-collapse:separate; 
+  border-collapse: separate;
   border-spacing: 0 25px;
 }
 
-.login-field tr td{
-  border-bottom: 2px solid rgba(255,255,255,0.24);
+.login-field tr td {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.24);
 }
 
-input{
+input {
   width: 350px;
   background: transparent;
   border: none;
@@ -92,8 +92,8 @@ input:focus::placeholder {
   color: #fff;
 }
 
-.btn_login{
-  background-color: rgba(255,255,255,0.75);
+.btn_login {
+  background-color: rgba(255, 255, 255, 0.75);
   color: #fd8b00;
   padding: 5px 10px;
   border-radius: 20px;
@@ -102,7 +102,7 @@ input:focus::placeholder {
   transition: all 0.5 ease-in-out;
 }
 
-.btn_login:hover{
+.btn_login:hover {
   background-color: #fd8b00;
   color: #fff;
   transition: all 0.5 ease-in-out;
