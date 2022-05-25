@@ -1,8 +1,18 @@
 <?php
 require '../libs/students.php';
 require_once("../libs/connection.php");
+$id = isset($_GET['id']) ? $_GET['id'] : '';
+if ($id){
+    $data = get_danhsachsinhvien($id);
+    $danhsachid = $data['MaKhoaHoc'];
+    echo "$danhsachid";
+}
+ 
+// Nếu không có dữ liệu tức không tìm thấy sinh viên cần sửa
+if (!$data){
+   header("location: course-list.php");
+}
 
-disconnect_db();
 ?>
  
 <!DOCTYPE html>
@@ -15,7 +25,7 @@ disconnect_db();
     <body>
         <h1>Danh sách lop</h1>
 	        <div align="center">
-            <form action="course-diem.php" method="get">
+            <form action="course-diem-list.php" method="get">
                 Search: <input type="text" name="search" />
                 <input type="submit" name="ok" value="search" />
             </form>
@@ -35,11 +45,11 @@ disconnect_db();
 		if (isset($_GET['search']) && $_GET['search'] != '') 
 		{
 			
-			$sql = 'select MaSv, DiemThi1,DiemQuaTrinh,DiemThi2,DiemTongKet from bangdiem where MaKhoaHoc =id and MaSv like "%'.$_GET['search'].'%"'
+			$sql = "select MaSv, DiemThi1,DiemQuaTrinh,DiemThi2,DiemTongKet from bangdiem where MaKhoaHoc = '$danhsachid'"
 			;
 		} 
 			else {
-				$sql = 'select MaSv, DiemThi1,DiemQuaTrinh,DiemThi2,DiemTongKet from bangdiem where MaKhoaHoc= id';
+				$sql = "select MaSv, DiemThi1,DiemQuaTrinh,DiemThi2,DiemTongKet from bangdiem where MaKhoaHoc= '$danhsachid'";
 			     }
 			$course = executeResult($sql);
 			$index = 1;
@@ -56,8 +66,8 @@ disconnect_db();
                         <input type="hidden" name="id" value="<?php echo $item['MaSv']; ?>"/>
                         <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
                     </form>
-                    <form method="post" action="course-diem">
-                        <input onclick="window.location='course-diem.php?id=<?php echo $item['id']; ?>'" type ="button" value="sua diem"/>
+                    <form method="post" action="course-diem-edit">
+                        <input onclick="window.location='course-diem-edit.php?id=<?php echo $item['id']; ?>'" type ="button" value=" sua diem"/>
                     </form>
                 </td>
             </tr>
@@ -65,3 +75,4 @@ disconnect_db();
         </table>
     </body>
 </html>
+

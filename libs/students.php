@@ -910,3 +910,30 @@ function delete_course($course_code)
     
     return $query;
 }
+
+function get_danhsachsinhvien($khoahoc_id)
+{
+    // Gọi tới biến toàn cục $conn
+    global $conn;
+    
+    // Hàm kết nối
+    connect_db();
+    
+    // Câu truy vấn lấy tất cả sinh viên
+    $sql = "select * from bangdiem where MaKhoaHoc = '$khoahoc_id'";
+    
+    // Thực hiện câu truy vấn
+    $query = mysqli_query($conn, $sql);
+    
+    // Mảng chứa kết quả
+    $result = array();
+    
+    // Nếu có kết quả thì đưa vào biến $result
+    if (mysqli_num_rows($query) > 0){
+        $row = mysqli_fetch_assoc($query);
+        $result = $row;
+    }
+    
+    // Trả kết quả về
+    return $result;
+}
