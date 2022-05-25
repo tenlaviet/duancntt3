@@ -1,6 +1,6 @@
 <?php
 require '../libs/students.php';
-
+require_once("../libs/connection.php");
 disconnect_db();
 ?>
  

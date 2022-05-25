@@ -1,6 +1,10 @@
 <?php
 require '../libs/students.php';
+<<<<<<< HEAD
 require_once ("../libs/connection.php");
+=======
+require_once("../libs/connection.php");
+>>>>>>> 9001369c661014b453e4639b5fd2818d183ea217
 
 disconnect_db();
 ?>
@@ -60,6 +64,10 @@ disconnect_db();
                         <input onclick="window.location = 'course-edit.php?id=<?php echo $item['id']; ?>'" type="button" value="Sửa"/>
                         <input type="hidden" name="id" value="<?php echo $item['id']; ?>"/>
                         <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
+                    </form>
+                    <form method="get" action="course-diem-list.php">
+                        <input onclick="window.location = 'course-diem-list.php?id=<?php echo $item['id']; ?>'" type="button" value="danhsach"/>
+                        <input type="hidden" name="id" value="<?php echo $item['id']; ?>"/>
                     </form>
                 </td>
             </tr>

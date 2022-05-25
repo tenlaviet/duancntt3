@@ -1,6 +1,7 @@
 <?php
  
-require './libs/students.php';
+require '../libs/students.php';
+require_once("../libs/connection.php");
  
 // Lấy thông tin hiển thị lên để người dùng sửa
 $id = isset($_GET['id']) ? $_GET['id'] : '';

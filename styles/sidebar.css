@@ -83,14 +83,8 @@ body {
     outline: none;
     border: none;
     cursor: pointer;
-    background-color: #D57F66;
-    color: white;
+    background-color: #fff;
+    color: #579CDD;
     transition: all 0.35s ease-in-out;
     margin: 30px 0;
-}
-
-.btn_logout:hover {
-    background-color: white;
-    color: #97c83e;
-    transition: all 0.35s ease-in-out;
 }

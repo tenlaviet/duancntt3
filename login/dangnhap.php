@@ -40,7 +40,7 @@ session_start();
 			}else{
 				// Lấy ra thông tin người dùng và lưu vào session
 				while ( $data = mysqli_fetch_array($query) ) {
-	    		$_SESSION["user_id"] = $data["id"];
+	    			$_SESSION["user_id"] = $data["id"];
 				$_SESSION['username'] = $data["username"];
 				$_SESSION["permission"] = $data["permission"];
                 // Thực thi hành động sau khi lưu thông tin vào session
