@@ -37,12 +37,12 @@ session_start();
 				$_SESSION["permission"] = $data["permission"];
                 // Thực thi hành động sau khi lưu thông tin vào session
                 }
-                header('Location: ../trangchu.php');
+                header('Location: ../trang_sinhvien.php');
 			}
 		}
 	}
 ?>
-	<form method="POST" action="dangnhap.php">
+	<form method="POST" action="dangnhap_sinhvien.php">
 	<fieldset>
 	    <legend>Đăng nhập</legend>
 	    	<table>

@@ -3,22 +3,21 @@
 global $conn;
 
 // Hàm kết nối database
-
 function executeResult($sql) {
-	//create connection toi database
-	$conn = mysqli_connect('localhost', 'root', '', 'duancntt');
+    //create connection toi database
+    $conn = mysqli_connect('localhost', 'root', '', 'duancntt');
 
-	//query
-	$resultset = mysqli_query($conn, $sql);
-	$list      = [];
-	while ($row = mysqli_fetch_array($resultset, 1)) {
-		$list[] = $row;
-	}
+    //query
+    $resultset = mysqli_query($conn, $sql);
+    $list      = [];
+    while ($row = mysqli_fetch_array($resultset, 1)) {
+        $list[] = $row;
+    }
 
-	//dong connection
-	mysqli_close($conn);
+    //dong connection
+    mysqli_close($conn);
 
-	return $list;
+    return $list;
 }
 function connect_db()
 {
@@ -76,7 +75,7 @@ function get_all_students()
 }
 
 // Hàm lấy sinh viên theo ID
-function get_student($student_code)
+function get_student($student_id)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
@@ -85,7 +84,7 @@ function get_student($student_code)
     connect_db();
     
     // Câu truy vấn lấy tất cả sinh viên
-    $sql = "select * from sinhvien where MaSv = '$student_code'";
+    $sql = "select * from sinhvien s inner join `user` u on s.user_id = u.id where s.user_id = '$student_id'";
     
     // Thực hiện câu truy vấn
     $query = mysqli_query($conn, $sql);
@@ -104,44 +103,42 @@ function get_student($student_code)
 }
 
 // Hàm thêm sinh viên
-function add_student($student_code, $student_name, $student_sex, $student_birthday, $student_CMND, $student_class, $student_major, $student_email)
+function add_student($student_id, $student_code, $student_password, $student_name, $student_sex, $student_birthday, $student_email, $student_CMND, $student_SDT, $student_class, $student_major , $student_permission)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
     
-    // Hàm kết nối
-    connect_db();
-    
-    // Chống SQL Injection
+$mysqli = new mysqli("localhost","root","","duancntt");
 
-    $student_code = addslashes($student_code);
-    $student_name = addslashes($student_name);
-    $student_sex = addslashes($student_sex);
-    $student_birthday = addslashes($student_birthday);
-    $student_CMND = addslashes($student_CMND);
-    $student_major = addslashes($student_major);
-    $student_email = addslashes($student_email);
-    $student_class = addslashes($student_class);
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
 
-    // Câu truy vấn thêm
-    $sql ="
-            INSERT INTO sinhvien(MaSv, HoTen, GioiTinh, NgaySinh, CMND, MaLop, MaCn, email) VALUES ('$student_code', '$student_name', '$student_sex', '$student_birthday', '$student_CMND','$student_class', '$student_major', '$student_email');";
-    // Thực hiện câu truy vấn
-    $query = mysqli_query($conn, $sql);
-    
+$sql = "INSERT INTO user(id, username, password, permission, CMND, SDT, email) VALUES ('$student_id','$student_code','$student_password','$student_permission','$student_CMND','$student_SDT','$student_email');";
+$sql1 = "INSERT INTO sinhvien(MaSv, HoTen, GioiTinh, NgaySinh,MaLop, MaCn, user_id) VALUES ('$student_code','$student_name','$student_sex', '$student_birthday', '$student_class','$student_major','$student_id');";
 
-    return $query;
+// Execute multi query
+$mysqli -> query($sql);
+$mysqli -> query($sql1);
+
+$mysqli -> close();
 }
 
 
 // Hàm sửa sinh viên
-function edit_student($student_code, $student_name, $student_sex, $student_birthday, $student_class, $student_major, $student_email, $student_CMND)
+function edit_student($student_id, $student_code, $student_password, $student_name, $student_sex, $student_birthday, $student_email, $student_CMND, $student_SDT, $student_class, $student_major , $student_permission)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
     
-    // Hàm kết nối
-    connect_db();
+
+    $mysqli = new mysqli("localhost","root","","duancntt");
+
+    if ($mysqli -> connect_errno) {
+    echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+    exit();
+    }
     
     // Chống SQL Injection
     $student_name       = addslashes($student_name);
@@ -150,24 +147,30 @@ function edit_student($student_code, $student_name, $student_sex, $student_birth
     $student_major   = addslashes($student_major);
     $student_email   = addslashes($student_email);
     $student_class   = addslashes($student_class);
-    $student_CMND   = addslashes($student_CMND);	
+    $student_CMND   = addslashes($student_CMND);
+    $student_id       = addslashes($student_id);
+    $student_code   = addslashes($student_code);
+    $student_SDT   = addslashes($student_SDT);
+    $student_permission   = addslashes($student_permission);
+    $student_password = addslashes($student_password);
+   
     
     // Câu truy sửa
+    $sql = "UPDATE `sinhvien` SET `MaSv`='$student_code',`HoTen`='$student_name',`GioiTinh`='$student_sex',`NgaySinh`='$student_birthday',`MaLop`='$student_class',`MaCn`='$student_major' WHERE user_id = '$student_id';";
+    $sql1 = "UPDATE `user` SET `username`='$student_code',`password`='$student_password',`CMND`='$student_CMND',`SDT`='$student_SDT',`email`='$student_email',`permission`='$student_permission' WHERE id= '$student_id';";
+   
     
-    $sql = " 
-	UPDATE `sinhvien` SET `HoTen`='$student_name',`GioiTinh`='$student_sex',`NgaySinh`='$student_birthday',`MaLop`='$student_class',`email`='$student_email',`MaCn`='$student_major',`CMND`='$student_CMND'
-	WHERE MaSv = '$student_code'
-    ";
     
     // Thực hiện câu truy vấn
-    $query = mysqli_query($conn, $sql);
-    
-    return $query;
+$mysqli -> query($sql);
+$mysqli -> query($sql1);
+
+$mysqli -> close();
 }
 
 
 // Hàm xóa sinh viên
-function delete_student($student_code)
+function delete_student($student_id)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
@@ -177,7 +180,7 @@ function delete_student($student_code)
     
     // Câu truy sửa
     $sql = "
-	DELETE FROM `sinhvien` WHERE MaSv = '$student_code';
+    DELETE FROM `user` WHERE   id = '$student_id';
 
     ";
     
@@ -278,7 +281,7 @@ function delete_monhoc($monhoc_code)
     
     // Câu truy sửa
     $sql = "
-	DELETE FROM `monhoc` WHERE MaMon = '$monhoc_code';
+    DELETE FROM `monhoc` WHERE MaMon = '$monhoc_code';
 
     ";
     
@@ -299,12 +302,12 @@ function edit_monhoc($monhoc_code, $monhoc_name)
     // Chống SQL Injection
     $monhoc_name       = addslashes($monhoc_name);
     $monhoc_code = addslashes($monhoc_code);
-	
+    
     
     // Câu truy sửa
     
     $sql = " 
-	UPDATE `monhoc` SET `TenMon`='$monhoc_name' WHERE MaMon = '$monhoc_code'
+    UPDATE `monhoc` SET `TenMon`='$monhoc_name' WHERE MaMon = '$monhoc_code'
     ";
     
     // Thực hiện câu truy vấn
@@ -405,7 +408,7 @@ function delete_major($major_code)
     
     // Câu truy sửa
     $sql = "
-	DELETE FROM `major` WHERE MaCn = '$major_code';
+    DELETE FROM `major` WHERE MaCn = '$major_code';
 
     ";
     
@@ -426,12 +429,12 @@ function edit_major($major_code, $major_name)
     // Chống SQL Injection
     $major_name       = addslashes($major_name);
     $major_code = addslashes($major_code);
-	
+    
     
     // Câu truy sửa
     
     $sql = " 
-	UPDATE `major` SET `TenCn`='$major_name' WHERE MaCn = '$major_code'
+    UPDATE `major` SET `TenCn`='$major_name' WHERE MaCn = '$major_code'
     ";
     
     // Thực hiện câu truy vấn
@@ -482,7 +485,7 @@ function add_lop($lop_code, $lop_cn, $lop_name)
     $lop_code = addslashes($lop_code);
     $lop_cn = addslashes($lop_cn);
     $lop_name = addslashes($lop_name);
-	
+    
 
     // Câu truy vấn thêm
     $sql ="
@@ -531,7 +534,7 @@ function delete_lop($lop_code)
     
     // Câu truy sửa
     $sql = "
-	DELETE FROM `lop` WHERE MaLop = '$lop_code';
+    DELETE FROM `lop` WHERE MaLop = '$lop_code';
 
     ";
     
@@ -552,12 +555,12 @@ function edit_lop($lop_code, $lop_cn, $lop_name)
     $lop_name       = addslashes($lop_name);
     $lop_code = addslashes($lop_code);
     $lop_cn = addslashes($lop_cn);
-	
+    
     
     // Câu truy sửa
     
     $sql = " 
-	UPDATE `lop` SET `MaCn`='$lop_cn',`KhoaDaoTao`='$lop_name' WHERE `MaLop` ='$lop_code'
+    UPDATE `lop` SET `MaCn`='$lop_cn',`KhoaDaoTao`='$lop_name' WHERE `MaLop` ='$lop_code'
     ";
     
     // Thực hiện câu truy vấn
@@ -597,7 +600,7 @@ function get_all_giaovien()
 }
 
 // Hàm lấy sinh viên theo ID
-function get_giaovien($giaovien_code)
+/*function get_giaovien($giaovien_code)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
@@ -622,10 +625,35 @@ function get_giaovien($giaovien_code)
     
     // Trả kết quả về
     return $result;
+}*/
+function get_giaovien($giaovien_id)
+{
+    // Gọi tới biến toàn cục $conn
+    global $conn;
+    
+    // Hàm kết nối
+    connect_db();
+    
+    // Câu truy vấn lấy tất cả sinh viên
+    $sql = "select * from giaovien g inner join `user` u on g.user_id = u.id where g.user_id = '$giaovien_id'";
+    
+    // Thực hiện câu truy vấn
+    $query = mysqli_query($conn, $sql);
+    
+    // Mảng chứa kết quả
+    $result = array();
+    
+    // Nếu có kết quả thì đưa vào biến $result
+    if (mysqli_num_rows($query) > 0){
+        $row = mysqli_fetch_assoc($query);
+        $result = $row;
+    }
+    
+    // Trả kết quả về
+    return $result;
 }
-
 // Hàm thêm sinh viên
-function add_giaovien($giaovien_code, $giaovien_name, $giaovien_sex, $giaovien_birthday, $giaovien_CMND, $giaovien_class, $giaovien_major, $giaovien_email)
+/*function add_giaovien($giaovien_code, $giaovien_name, $giaovien_sex, $giaovien_birthday, $giaovien_CMND, $giaovien_class, $giaovien_major, $giaovien_email)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
@@ -651,18 +679,45 @@ function add_giaovien($giaovien_code, $giaovien_name, $giaovien_sex, $giaovien_b
     $query = mysqli_query($conn, $sql);
     
 
+
     return $query;
 }
-
-
-// Hàm sửa sinh viên
-function edit_giaovien($giaovien_code, $giaovien_name, $giaovien_sex, $giaovien_birthday, $giaovien_class, $giaovien_major, $giaovien_email, $giaovien_CMND)
+*/
+function add_giaovien($giaovien_id, $giaovien_code, $giaovien_password, $giaovien_name, $giaovien_sex, $giaovien_birthday, $giaovien_email, $giaovien_CMND, $giaovien_SDT, $giaovien_class, $giaovien_major , $giaovien_permission)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
     
-    // Hàm kết nối
-    connect_db();
+$mysqli = new mysqli("localhost","root","","duancntt");
+
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+
+$sql = "INSERT INTO user(id, username, password, permission, CMND, SDT, email) VALUES ('$giaovien_id','$giaovien_code','$giaovien_password','$giaovien_permission','$giaovien_CMND','$giaovien_SDT','$giaovien_email');";
+$sql1 = "INSERT INTO giaovien(`MaGv`, `HoTen`, `GioiTinh`, `NgaySinh`, `MaCn`, `ChuNhiem`, `user_id`) VALUES ('$giaovien_code','$giaovien_name','$giaovien_sex', '$giaovien_birthday', '$giaovien_major','$giaovien_class','$giaovien_id');";
+
+// Execute multi query
+$mysqli -> query($sql);
+$mysqli -> query($sql1);
+
+$mysqli -> close();
+}
+
+// Hàm sửa giao vien
+function edit_giaovien($giaovien_id, $giaovien_code, $giaovien_password, $giaovien_name, $giaovien_sex, $giaovien_birthday, $giaovien_email, $giaovien_CMND, $giaovien_SDT, $giaovien_class, $giaovien_major , $giaovien_permission)
+{
+    // Gọi tới biến toàn cục $conn
+    global $conn;
+    
+
+    $mysqli = new mysqli("localhost","root","","duancntt");
+
+    if ($mysqli -> connect_errno) {
+    echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+    exit();
+    }
     
     // Chống SQL Injection
     $giaovien_name       = addslashes($giaovien_name);
@@ -671,24 +726,31 @@ function edit_giaovien($giaovien_code, $giaovien_name, $giaovien_sex, $giaovien_
     $giaovien_major   = addslashes($giaovien_major);
     $giaovien_email   = addslashes($giaovien_email);
     $giaovien_class   = addslashes($giaovien_class);
-    $giaovien_CMND   = addslashes($giaovien_CMND);    
+    $giaovien_CMND   = addslashes($giaovien_CMND);
+    $giaovien_id       = addslashes($giaovien_id);
+    $giaovien_code   = addslashes($giaovien_code);
+    $giaovien_SDT   = addslashes($giaovien_SDT);
+    $giaovien_permission   = addslashes($giaovien_permission);
+    $giaovien_password = addslashes($giaovien_password);
+   
     
     // Câu truy sửa
+    $sql = "UPDATE `giaovien` SET `MaGv`='$giaovien_code',`HoTen`='$giaovien_name',`GioiTinh`='$giaovien_sex',`NgaySinh`='$giaovien_birthday',`ChuNhiem`='$giaovien_class',`MaCn`='$giaovien_major' WHERE user_id = '$giaovien_id';";
+    $sql1 = "UPDATE `user` SET `username`='$giaovien_code',`password`='$giaovien_password',`CMND`='$giaovien_CMND',`SDT`='$giaovien_SDT',`email`='$giaovien_email',`permission`='$giaovien_permission' WHERE id= '$giaovien_id';";
+   
     
-    $sql = " 
-    UPDATE `giaovien` SET `HoTen`='$giaovien_name',`GioiTinh`='$giaovien_sex',`NgaySinh`='$giaovien_birthday',`ChuNhiem`='$giaovien_class',`email`='$giaovien_email',`MaCn`='$giaovien_major',`CMND`='$giaovien_CMND'
-    WHERE MaGv = '$giaovien_code'
-    ";
     
     // Thực hiện câu truy vấn
-    $query = mysqli_query($conn, $sql);
-    
-    return $query;
+$mysqli -> query($sql);
+$mysqli -> query($sql1);
+
+$mysqli -> close();
 }
 
 
 // Hàm xóa sinh viên
-function delete_giaovien($giaovien_code)
+
+function delete_giaovien($giaovien_id)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
@@ -698,7 +760,7 @@ function delete_giaovien($giaovien_code)
     
     // Câu truy sửa
     $sql = "
-    DELETE FROM `giaovien` WHERE MaGv = '$giaovien_code';
+    DELETE FROM `user` WHERE   id = '$giaovien_id';
 
     ";
     
@@ -707,6 +769,7 @@ function delete_giaovien($giaovien_code)
     
     return $query;
 }
+
 //////////////////////////COURSE
 function get_all_course()
 {

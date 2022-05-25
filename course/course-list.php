@@ -1,5 +1,6 @@
 <?php
-require './libs/students.php';
+require '../libs/students.php';
+require_once("../libs/connection.php");
 
 disconnect_db();
 ?>
@@ -59,6 +60,9 @@ disconnect_db();
                         <input onclick="window.location = 'course-edit.php?id=<?php echo $item['id']; ?>'" type="button" value="Sửa"/>
                         <input type="hidden" name="id" value="<?php echo $item['id']; ?>"/>
                         <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
+                    </form>
+                    <form method="post" action="course-diem">
+                        <input onclick="window.location='course-diem.php?id=<?php echo $item['id']; ?>'" type ="button" value="danhsachsinhvien"/>
                     </form>
                 </td>
             </tr>

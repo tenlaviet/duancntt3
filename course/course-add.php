@@ -1,7 +1,7 @@
 <?php
 
-require './libs/students.php';
-require_once("connection.php");
+require '../libs/students.php';
+require_once("../libs/connection.php");
 // Nếu người dùng submit form
 if (!empty($_POST['add_course']))
 {
@@ -110,7 +110,7 @@ disconnect_db();
                 <tr>
                     <td>Ngày thi</td>
                     <td>
-                        <input type="text" name="ngaythi" value=""/>
+                        <input type="date" name="ngaythi" value=""/>
                     </td>   
                 </tr>
                 <tr>

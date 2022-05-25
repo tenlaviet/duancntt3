@@ -1,6 +1,7 @@
 <?php
  
-require './libs/students.php';
+require '../libs/students.php';
+require_once("../libs/connection.php");
  
 // Lấy thông tin hiển thị lên để người dùng sửa
 $id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -122,7 +123,7 @@ disconnect_db();
                 <tr>
                     <td>Ngày Thi</td>
                     <td>
-                        <input type="text" name="ngaythi" value="<?php echo $data['NgayThi']; ?>"/>
+                        <input type="date" name="ngaythi" value="<?php echo $data['NgayThi']; ?>"/>
                     </td>
                 </tr>
                 <tr>

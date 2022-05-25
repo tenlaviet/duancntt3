@@ -24,7 +24,7 @@ header('Location: login/dangnhap.php');
 </head>
 <body>
 <h1>Mục Lục</h1>
-<a href="/duancntt3/student/student-list.php">Danh sách sinh viên</a> <br/> <br/>
+<a href="/duancntt3/students/student-list.php">Danh sách sinh viên</a> <br/> <br/>
 <a href="/duancntt3/admin/user-list.php">Danh sách người dùng</a> <br/> <br/>
 <a href="/duancntt3/lop/lop-list.php">Danh sách lớp</a> <br/> <br/>
 <a href="/duancntt3/giaovien/giaovien-list.php">Danh sách giáo viên</a> <br/> <br/>

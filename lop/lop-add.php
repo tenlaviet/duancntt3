@@ -1,6 +1,7 @@
 <?php
 
 require '../libs/students.php';
+require_once("../libs/connection.php");
 // Nếu người dùng submit form
 if (!empty($_POST['add_lop']))
 {
