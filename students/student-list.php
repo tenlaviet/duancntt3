@@ -1,5 +1,5 @@
 <?php
-require './libs/students.php';
+require '../libs/students.php';
 
 disconnect_db();
 ?>

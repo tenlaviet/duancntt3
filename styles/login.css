@@ -99,11 +99,11 @@ input:focus::placeholder {
   border-radius: 20px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.5 ease-in-out;
+  transition: all 0.35s ease-in-out;
 }
 
 .btn_login:hover {
   background-color: #fd8b00;
   color: #fff;
-  transition: all 0.5 ease-in-out;
+  transition: all 0.35s ease-in-out;
 }
