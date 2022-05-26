@@ -45,7 +45,7 @@ session_start();
 				$_SESSION["permission"] = $data["permission"];
                 // Thực thi hành động sau khi lưu thông tin vào session
                 }
-                header('Location: ../trangchu.php');
+                header('Location: ../students/student-list.php');
 			}
 		}
 	}

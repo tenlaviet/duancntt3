@@ -3,15 +3,17 @@ require '../libs/students.php';
 require_once("../libs/connection.php");
 disconnect_db();
 ?>
- 
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Danh sách lớp</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
         <h1>Danh sách lớp</h1>
 	        <div align="center">
             <form action="lop-list.php" method="get">

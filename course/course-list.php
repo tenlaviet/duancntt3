@@ -1,10 +1,6 @@
 <?php
 require '../libs/students.php';
-<<<<<<< HEAD
-require_once ("../libs/connection.php");
-=======
 require_once("../libs/connection.php");
->>>>>>> 9001369c661014b453e4639b5fd2818d183ea217
 
 disconnect_db();
 ?>
@@ -15,8 +11,10 @@ disconnect_db();
         <title>Danh sách học</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
         <h1>Danh sách khóa học</h1>
 	        <div align="center">
             <form action="course-list.php" method="get">

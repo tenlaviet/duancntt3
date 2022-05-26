@@ -1,18 +1,9 @@
 <?php
-	session_start();
-	include("permission.php");
-// if (isset($_SESSION['username'])) {
-// 	 echo $_SESSION['username'];
-// }
-?>
-
-<?php
 if(isset($_GET['logout'])) {
 session_destroy();
-header('Location: login/dangnhap.php');
+header('Location: ../login/dangnhap.php');
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +21,7 @@ header('Location: login/dangnhap.php');
 
 <body>
     <div class="sidebar">
-        <img src="./img/user.png" alt="avatar" class="avatar">
+        <img src="../img/user.png" alt="avatar" class="avatar">
         <span class="user-name">
             <?php if (isset($_SESSION['username'])) {
 	            echo $_SESSION['username'];
@@ -46,7 +37,7 @@ header('Location: login/dangnhap.php');
             <li><a href="/duancntt3/major/major-list.php">Danh sách chuyên ngành</a></li>
             <li><a href="/duancntt3/students/student-profile.php">profile</a></li>
         </ul>
-        <form method="get" action="trangchu.php">
+        <form method="get" action="student-list.php">
             <input onclick="return confirm('Bạn có chắc muốn logout không?');" type="submit" name="logout" class="btn_logout" value="Logout" />
         </form>
     </div>
