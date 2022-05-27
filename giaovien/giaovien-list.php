@@ -31,7 +31,7 @@ disconnect_db();
                     <input type="submit" name="ok" value="search" class="search-btn" />
                 </form>
             </div>
-            <a href="giaovien-add.php" class="student-add"><i class="fa-solid fa-plus"></i>Thêm sinh viên</a> <br/> <br/>
+            <a href="giaovien-add.php" class="student-add"><i class="fa-solid fa-plus"></i>Thêm sinh viên</a>
             <table width="100%" border="1" cellspacing="0" cellpadding="10">
                 <tr>
                     <td>Mã giao vien</td>
