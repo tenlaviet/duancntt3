@@ -4,64 +4,53 @@ require '../libs/students.php';
 require_once("../libs/connection.php");
  
 // Lấy thông tin hiển thị lên để người dùng sửa
-$id = isset($_GET['id']) ? $_GET['id'] : '';
-if ($id){
-    $data = get_course($id);
+echo $_GET['id1'];
+echo $_GET['id2'];
+$id1 = isset($_GET['id1']) ? $_GET['id1'] : '';
+$id2 = isset($_GET['id2']) ? $_GET['id2'] : '';
+if ($id1){
+    if($id2)
+    {
+        $data = get_course_student($id1,$id2);
+        echo $data['MaKhoaHoc'];
+        echo $data['MaSv'];
+
+    }
 }
- 
-// Nếu không có dữ liệu tức không tìm thấy sinh viên cần sửa
 if (!$data){
    header("location: course-list.php");
 }
  
+// Nếu không có dữ liệu tức không tìm thấy sinh viên cần sửa
+
+ 
+
+ 
 // Nếu người dùng submit form
-if (!empty($_POST['edit_course']))
+if (!empty($_POST['edit_diem_student']))
 {
     // Lay data
     
 
 
 
-    $data['MaMon']= isset($_POST['mamon']) ? $_POST['mamon'] : '';
-    $data['HocKi']         = isset($_POST['hocki']) ? $_POST['hocki'] : '';
-    $data['PhongHoc']    = isset($_POST['phonghoc']) ? $_POST['phonghoc'] : '';
-    $data['MaGv']        = isset($_POST['magv']) ? $_POST['magv'] : '';
-    $data['Thu']         = isset($_POST['thu']) ? $_POST['thu'] : '';
-    $data['Ca']    = isset($_POST['ca']) ? $_POST['ca'] : '';
-    $data['NgayThi']    = isset($_POST['ngaythi']) ? $_POST['ngaythi'] : '';
+
+    $data['DiemThi1']        = isset($_POST['diemthi1']) ? $_POST['diemthi1'] : '';
+    $data['DiemThi2']         = isset($_POST['diemthi2']) ? $_POST['diemthi2'] : '';
+    $data['DiemQuaTrinh']    = isset($_POST['diemquatrinh']) ? $_POST['diemquatrinh'] : '';
+    $data['DiemTongKet']    = isset($_POST['diemtongket']) ? $_POST['diemtongket'] : '';
     // Lay data 
     // Validate thong tin
+    $mkh     =$data['MaKhoaHoc'];
+    $masv    =$data['MaSv'];
     $errors = array();
-    if (empty($data['MaMon'])){
-        $errors['MaMon'] = 'Vui lòng không để trống';
-    }
-     
-    if (empty($data['HocKi'])){
-        $errors['HocKi'] = 'Vui lòng không để trống';
-    }
-
-    if (empty($data['PhongHoc'])){
-        $errors['PhongHoc'] = 'Vui lòng không để trống';
-    }
-    if (empty($data['MaGv'])){
-        $errors['MaGv'] = 'Vui lòng không để trống';
-    }
-    if (empty($data['Thu'])){
-        $errors['Thu'] = 'Vui lòng không để trống';
-    }
-    if (empty($data['Ca'])){
-        $errors['Ca'] = 'Vui lòng không để trống';
-    }
-    if (empty($data['NgayThi'])){
-    $errors['NgayThi'] = 'Vui lòng không để trống';
-    }
 
      
     // Neu ko co loi thi insert
     if (!$errors){
-        edit_course($data['id'], $data['MaMon'], $data['HocKi'], $data['PhongHoc'], $data['MaGv'], $data['Thu'], $data['Ca'], $data['NgayThi']);
+        edit_bangdiem($_POST['id1'], $_POST['id2'], $data['DiemThi1'], $data['DiemThi2'], $data['DiemQuaTrinh'], $data['DiemTongKet']);
         // Trở về trang danh sách
-        header("location: course-list.php");
+        header('location:course-diem-list.php?id='.$_POST['id1'].'');
     }
 }
 
@@ -77,60 +66,44 @@ disconnect_db();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Thêm khóa học </h1>
-        <a href="course-list.php">Trở về</a> <br/> <br/>
-        <form method="post" action="course-edit.php?id=<?php echo $data['id']; ?>">
+        <h1>sua diem </h1>
+        <form method="get" action="course-diem-list.php">
+        <input onclick="window.location = 'course-diem-list.php?id=<?php echo"$id1"; ?>'" type="button" value="tro ve"/>
+        </form>
+        <form method="post" action="course-diem-edit.php">
             <table width="50%" border="1" cellspacing="0" cellpadding="10">
                 
                 <tr>
-                    <td>Mã Môn</td>
+                    <td>1</td>
                     <td>
-                        <input type="text" name="mamon" value="<?php echo $data['MaMon']; ?>"/>
-
+                        <input type="number" name="diemthi1" value="<?php echo $data['DiemThi1']; ?>"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Học kì</td>
+                    <td>qt</td>
                     <td>
-                    <input type="text" name="hocki" value="<?php echo $data['HocKi']; ?>"/>
+                    <input type="number" name="diemquatrinh" value="<?php echo $data['DiemQuaTrinh']; ?>"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Phòng học</td>
+                    <td>2</td>
                     <td>
-                        <input type="text" name="phonghoc" value="<?php echo $data['PhongHoc']; ?>"/>
+                        <input type="number" name="diemthi2" value="<?php echo $data['DiemThi2']; ?>"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Mã giáo viên</td>
+                    <td>tk</td>
                     <td>
-                        <input type="text" name="magv" value="<?php echo $data['MaGv']; ?>"/>
+                        <input type="number" name="diemtongket" value="<?php echo $data['DiemTongKet']; ?>"/>
             
-                    </td>
-                </tr>
-                <tr>
-                    <td>Thứ</td>
-                    <td>
-                        <input type="text" name="thu" value="<?php echo $data['Thu']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ca học</td>
-                    <td>
-                        <input type="text" name="ca" value="<?php echo $data['Ca']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ngày Thi</td>
-                    <td>
-                        <input type="date" name="ngaythi" value="<?php echo $data['NgayThi']; ?>"/>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                        <input type="hidden" name="id" value="<?php echo $data['id']; ?>"/>
-                        <input type="submit" name="edit_course" value="Lưu"/>
+                        <input type="hidden" name="id1" value="<?php echo $data['MaKhoaHoc']; ?>"/>
+                        <input type="hidden" name="id2" value="<?php echo $data['MaSv']; ?>"/>
+                        <input type="submit" name="edit_diem_student" value="Lưu"/>
                     </td>
                 </tr>
             </table>

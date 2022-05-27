@@ -4,7 +4,8 @@
  ?>
 <?php include("permission.php");
 if (isset($_SESSION['username'])) {
-	 echo $_SESSION['username'];
+	 
+	 if $_SESSION['permission'];
 }
 ?>
 <?php
@@ -31,7 +32,7 @@ header('Location: login/dangnhap.php');
 <a href="/duancntt3/course/course-list.php">Danh sách khóa học</a> <br/> <br/>
 <a href="/duancntt3/monhoc/monhoc-list.php">Danh sách môn học</a> <br/> <br/>
 <a href="/duancntt3/major/major-list.php">Danh sách chuyên ngành</a> <br/> <br/>
-<a href="/duancntt3/student/student-profile.php">profile</a> <br/> <br/>
+<a href="/duancntt3/students/student-profile.php">profile</a> <br/> <br/>
 
                     <form method="get" action="trangchu.php">
                         <input onclick="return confirm('Bạn có chắc muốn logout không?');" type="submit" name="logout" value="logout"/>
