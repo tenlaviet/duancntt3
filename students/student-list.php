@@ -24,6 +24,7 @@ disconnect_db();
         <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
         <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
         <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -36,23 +37,24 @@ disconnect_db();
                     <input type="submit" name="ok" value="search" class="search-btn" /> 
                 </form>
             </div>
-            <a href="student-add.php" class="student-add"><i class="fa-solid fa-plus"></i>Thêm sinh viên</a>
-            <table width="100%" border="1" cellspacing="0" cellpadding="10">
-                <tr>
-                    <td>Mã sinh viên</td>
-                    <td>Họ tên</td>
-                    <td>Giới tính</td>
-                    <td>Ngày sinh</td>
-                    <td>lop</td>
-                    <td>major</td>
-                    <td>ID tai khoan</td>
-                    <td>mat khau</td>
-                    <td>CMND</td>
-                    <td>email</td>
-                    <td>SDT</td>
-                    <td>Options</td>
-                </tr>
-
+            <a href="student-add.php" class="student-add"><i class="fa-solid fa-circle-plus"></i></i>Thêm sinh viên</a>
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Mã sinh viên</td>
+                        <th>Họ tên</td>
+                        <th>Giới tính</td>
+                        <th>Ngày sinh</td>
+                        <th>Lớp</td>
+                        <th>Major</td>
+                        <th>ID tài khoản</td>
+                        <th>Mật khẩu</td>
+                        <th>CMND</td>
+                        <th>Email</td>
+                        <th>SDT</td>
+                        <th>Options</td>
+                    </tr>
+                </thead>
                 <?php
             if (isset($_GET['search']) && $_GET['search'] != '') 
             {

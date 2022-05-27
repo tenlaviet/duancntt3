@@ -15,7 +15,7 @@ body {
 }
 
 .wrapper{
-    margin: 0 10px 0 310px;
+    margin: 0 10px 0 285px;
 }
 
 h1 {
@@ -73,10 +73,8 @@ input:focus::placeholder {
     margin: 20px 0 10px 0;
 }
 
-.fa-plus {
-    border: 3.5px solid;
-    font-size: 25px;
-    border-radius: 50%;
+.fa-circle-plus {
+    font-size: 30px;
     padding: 2px;
     margin-right: 5px;
 }
