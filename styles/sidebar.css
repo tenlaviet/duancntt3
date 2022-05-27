@@ -18,7 +18,7 @@ body {
     position: fixed;
     background-color: #579CDD;
     top: 0;
-    width: 300px;
+    width: 275px;
     height: 100%;
     transition: all 0.5s ease-in-out;
     overflow-y: scroll;
@@ -38,7 +38,7 @@ body {
 
 .user-name{
     color: #fff;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     margin: 0 0 10px 0 ;
 }
@@ -70,9 +70,9 @@ body {
 
 .sidebar a:hover {
     color: #579CDD;
-    background: #ffffffdc;
-    border-left-color: #579CDD;
-    box-shadow: 0 5px 10px rgba(156, 175, 156, 0.651);
+    background: #ffffffe8;
+    border-left-color: red;
+    box-shadow: 0 5px 10px rgba(149, 31, 31, 0.651);
 }
 
 .btn_logout {
