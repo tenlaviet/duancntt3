@@ -11,8 +11,10 @@ disconnect_db();
         <title>Danh sách chuyên ngành</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
         <h1>Danh sách chuyên ngành</h1>
 	        <div align="center">
             <form action="major-list.php" method="get">

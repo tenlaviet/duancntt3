@@ -2,12 +2,20 @@
 session_start();
 ?>
 <html>
+
 <head>
-	<title>Trang đăng nhập</title>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" href="../img/Logo-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+    <link href="../styles/login.css" rel="stylesheet" type="text/css" />
+    <title>Trang đăng nhập</title>
 </head>
+
 <body>
-<?php
+    <?php
 	//Gọi file connection.php ở bài trước
 	require_once("../libs/connection.php");
 	// Kiểm tra nếu người dùng đã ân nút đăng nhập thì mới xử lý
@@ -37,35 +45,45 @@ session_start();
 				$_SESSION["permission"] = $data["permission"];
                 // Thực thi hành động sau khi lưu thông tin vào session
                 }
+
                 if ($_SESSION["permission"]=='3')
                 {
                 header('Location: ../trang_sinhvien.php');
             	}
                 if ($_SESSION["permission"]=='1')
                 {
-                header('Location: ../trangchu.php');
+                header('Location: ../students/student-list.php');
             	}
+
+                
+
 			}
 		}
 	}
 ?>
-	<form method="POST" action="dangnhap.php">
-	<fieldset>
-	    <legend>Đăng nhập</legend>
-	    	<table>
-	    		<tr>
-	    			<td>Username</td>
-	    			<td><input type="text" name="username" size="30"></td>
-	    		</tr>
-	    		<tr>
-	    			<td>Password</td>
-	    			<td><input type="password" name="password" size="30"></td>
-	    		</tr>
-	    		<tr>
-	    			<td colspan="2" align="center"> <input name="btn_submit" type="submit" value="Đăng nhập"></td>
-	    		</tr>
-	    	</table>
-  </fieldset>
-  </form>
+    <div class="login">
+        <div class="login-wrapper">
+            <form method="POST" action="dangnhap.php">
+                <img src="../img/logo.png" alt="" class="logo">
+                <fieldset>
+                    <legend>Đăng Nhập</legend>
+                    <table class="login-field">
+                        <tr>
+                            <td><input type="text" placeholder="Username" name="username" class="username input"
+                                    size="30"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" placeholder="Password" name="password" class="password input"
+                                    size="30"></td>
+                        </tr>
+                        <tr>
+                            <th> <input name="btn_submit" class="btn_login" type="submit" value="Đăng nhập"></th>
+                        </tr>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
