@@ -910,8 +910,62 @@ function delete_course($course_code)
     
     return $query;
 }
+//////////////////////BANGDIEM
 
-function get_danhsachsinhvien($khoahoc_id)
+
+function add_bangdiem($bangdiem_student, $bangdiem_course)
+{
+    // Gọi tới biến toàn cục $conn
+    global $conn;
+    
+    // Hàm kết nối
+    connect_db();
+    
+    // Chống SQL Injection
+
+    $bangdiem_student = addslashes($bangdiem_student);
+    $bangdiem_course = addslashes($bangdiem_course);
+
+
+    // Câu truy vấn thêm
+    $sql ="
+            INSERT INTO `bangdiem`(`MaSv`, `MaKhoaHoc`) VALUES ('$bangdiem_student','$bangdiem_course');";
+    // Thực hiện câu truy vấn
+    $query = mysqli_query($conn, $sql);
+    
+
+    return $query;
+}
+
+function edit_bangdiem($bangdiem_course, $bangdiem_student, $bangdiem_diem1,$bangdiem_diem2, $bangdiem_diemquatrinh, $bangdiem_diemtongket)
+{
+    // Gọi tới biến toàn cục $conn
+    global $conn;
+    
+    // Hàm kết nối
+    connect_db();
+    
+    // Chống SQL Injection
+   
+    $bangdiem_student = addslashes($bangdiem_student);  
+    $bangdiem_course = addslashes($bangdiem_course);
+    $bangdiem_diem1 = addslashes($bangdiem_diem1);  
+    $bangdiem_diem2 = addslashes($bangdiem_diem2);  
+    $bangdiem_diemquatrinh = addslashes($bangdiem_diemquatrinh);  
+    $bangdiem_diemtongket = addslashes($bangdiem_diemtongket);    
+    
+    // Câu truy sửa
+    
+    $sql = " 
+    UPDATE `bangdiem` SET `DiemQuaTrinh`='$bangdiem_diemquatrinh',`DiemThi1`='$bangdiem_diem1',`DiemThi2`='$bangdiem_diem2',`DiemTongKet`='$bangdiem_diemtongket' WHERE `MaSv`='$bangdiem_student' and `MaKhoaHoc`='$bangdiem_course'
+    ";
+    
+    // Thực hiện câu truy vấn
+    $query = mysqli_query($conn, $sql);
+    
+    return $query;
+}
+function get_course_student($bangdiem_course,$bangdiem_student)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
@@ -920,7 +974,7 @@ function get_danhsachsinhvien($khoahoc_id)
     connect_db();
     
     // Câu truy vấn lấy tất cả sinh viên
-    $sql = "select * from bangdiem where MaKhoaHoc = '$khoahoc_id'";
+    $sql = "select * from bangdiem where MaSv = '$bangdiem_student' and MaKhoaHoc ='$bangdiem_course'";
     
     // Thực hiện câu truy vấn
     $query = mysqli_query($conn, $sql);
@@ -936,4 +990,58 @@ function get_danhsachsinhvien($khoahoc_id)
     
     // Trả kết quả về
     return $result;
+}
+
+function get_user($user_id)
+{
+    // Gọi tới biến toàn cục $conn
+    global $conn;
+    
+    // Hàm kết nối
+    connect_db();
+    
+    // Câu truy vấn lấy tất cả sinh viên
+    $sql = "select * from user where username = '$user_id'";
+    
+    // Thực hiện câu truy vấn
+    $query = mysqli_query($conn, $sql);
+    
+    // Mảng chứa kết quả
+    $result = array();
+    
+    // Nếu có kết quả thì đưa vào biến $result
+    if (mysqli_num_rows($query) > 0){
+        $row = mysqli_fetch_assoc($query);
+        $result = $row;
+    }
+    
+    // Trả kết quả về
+    return $result;
+}
+
+function change_password($membersID, $password)
+{
+    // Gọi tới biến toàn cục $conn
+    global $conn;
+    
+    // Hàm kết nối
+    connect_db();
+    
+    // Chống SQL Injection
+    $membersID = addslashes($membersID);
+    $password = addslashes($password);
+
+   
+    
+    
+    // Câu truy sửa
+    
+    $sql = " 
+    UPDATE `user` SET `password`='$password' WHERE username = '$membersID'
+    ";
+    
+    // Thực hiện câu truy vấn
+    $query = mysqli_query($conn, $sql);
+    
+    return $query;
 }

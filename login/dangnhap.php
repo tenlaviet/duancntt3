@@ -40,12 +40,23 @@ session_start();
 			}else{
 				// Lấy ra thông tin người dùng và lưu vào session
 				while ( $data = mysqli_fetch_array($query) ) {
-	    			$_SESSION["user_id"] = $data["id"];
+	    		$_SESSION["user_id"] = $data["id"];
 				$_SESSION['username'] = $data["username"];
 				$_SESSION["permission"] = $data["permission"];
                 // Thực thi hành động sau khi lưu thông tin vào session
                 }
+
+                if ($_SESSION["permission"]=='3')
+                {
+                header('Location: ../trang_sinhvien.php');
+            	}
+                if ($_SESSION["permission"]=='1')
+                {
                 header('Location: ../students/student-list.php');
+            	}
+
+                
+
 			}
 		}
 	}

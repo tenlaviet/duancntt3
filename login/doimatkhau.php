@@ -4,57 +4,84 @@
 	</head>
 	<body>
 		<?php
-		require_once("connection.php");
-		if (isset($_POST["btn_submit"])) {
-  			//lấy thông tin từ các form bằng phương thức POST
-  			$username = $_POST["username"];
-  			$password = $_POST["pass"];
-  			$id = $_POST["id"];
+		session_start();
 
-  			//Kiểm tra điều kiện bắt buộc đối với các field không được bỏ trống
-			  if ($username == "" || $password == "" || $id == "") {
-				   echo "bạn vui lòng nhập đầy đủ thông tin";
-  			}else{
-  					// Kiểm tra tài khoản đã tồn tại chưa
-  					$sql="select * from user where username='$username'";
-					$kt=mysqli_query($conn, $sql);
+		
+		require '../libs/students.php';
+		
+		
 
-					if(mysqli_num_rows($kt)  > 0){
-						echo "Tài khoản đã tồn tại";
-					}else{
-						//thực hiện việc lưu trữ dữ liệu vào db
-	    				$sql = "INSERT INTO user(id, username, password) VALUES ('$id', '$username', '$password')";
-					$query1 = mysqli_query($conn,$sql);
-					$sql= "INSERT INTO sinhvien(user_id, MaSv) VALUES ('$id', '$username')";
-					    // thực thi câu $sql với biến conn lấy từ file connection.php
-   						$query2 = mysqli_query($conn,$sql);
-				   		echo "chúc mừng bạn đã đăng ký thành công";
-					}
-									    
-					
-			  }
-	}
 	?>
-	<form action="formdangky.php" method="post">
+	<?php
+	$data = get_user($_SESSION['username']);
+	
+	if (!empty($_POST['luu']))
+{
+	$mkht= isset($_POST['mkht']) ? $_POST['mkht'] : '';
+	$mkm= isset($_POST['mkm']) ? $_POST['mkm'] : '';
+	$nl= isset($_POST['nl']) ? $_POST['nl'] : ''; 
+    // Validate thong tin
+    $errors = array();
+    if ($mkht != $data['password']){
+        $errors['khongtrung'] = 'khong giong mat khau hien tai';
+    } 
+ 
+    if (empty($mkm)){
+        $errors['mkm'] = 'dien thieu thong tin';
+    }
+     
+
+    if ($nl != $mkm){
+    $errors['khongtrung2'] = 'ban nhap sai';
+    } 
+
+     
+    // Neu ko co loi thi insert
+    if (!$errors){
+    	echo $data['username'];
+    	echo $mkm;
+        change_password($data['username'],$mkm);
+        //change_password('12','1234');
+
+        header("location: ../students/student-profile.php");
+    }
+}
+	?>
+	<form action="doimatkhau.php" method="post">
 		<table>
 			<tr>
-				<td colspan="2">Form dang ky</td>
+				<td colspan="2">Form doi mat khau</td>
 			</tr>
 			<tr>
-				<td>ID :</td>
-				<td><input type="number" id="aidi" name="id"></td>
+				<td>Mật khẩu hiện tại</td>
+				<td>
+					<input type="password" id="mkht" name="mkht" value="">
+					<?php if (!empty($errors['mkht']))
+					{ 
+						echo $errors['mkht'];
+					}?>
+					<?php if (!empty($errors['khongtrung'])) echo $errors['khongtrung'];?>
+				</td>
+
 			</tr>	
 			<tr>
-				<td>Username :</td>
-				<td><input type="text" id="username" name="username"></td>
+				<td>Mật khẩu mới</td>
+				<td><input type="password" id="mkm" name="mkm" value="">
+				<?php if (!empty($errors['mkm'])) echo $errors['mkm'];?>
+				</td>
 			</tr>
 			<tr>
-				<td>Password :</td>
-				<td><input type="password" id="pass" name="pass"></td>
+				<td>Nhập lại mật khẩu mới</td>
+				<td><input type="password" id="nl" name="nl" value="">
+				<?php if (!empty($errors['khongtrung2']))
+					{ 
+						echo $errors['khongtrung2'];
+					}?>
+				</td>
 			</tr>
 
 			<tr>
-				<td colspan="2" align="center"><input type="submit" name="btn_submit" value="Dang ky"></td>
+				<td colspan="2" align="center"><input type="submit" name="luu" value="luu thay doi"></td>
 			</tr>
 
 		</table>

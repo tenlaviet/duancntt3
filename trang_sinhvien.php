@@ -2,15 +2,17 @@
 	session_start();
 
  ?>
-<?php include("permission_sinhvien.php");
+<?php
 if (isset($_SESSION['username'])) {
+	echo $_SESSION['permission'];
 	 echo $_SESSION['username'];
 }
 ?>
 <?php
+
 if(isset($_GET['logout'])) {
 session_destroy();
-header('Location: login/dangnhap_sinhvien.php');
+header('Location: login/dangnhap.php');
 }
 ?>
 
@@ -25,10 +27,10 @@ header('Location: login/dangnhap_sinhvien.php');
 <body>
 <h1>Mục Lục</h1>
 
-<a href="/duancntt3/student/student-profile.php">Thông tin cá nhân</a> <br/> <br/>
-<a href="/duancntt3/student/student-profile.php">Đăng ký học</a> <br/> <br/>
-<a href="/duancntt3/student/student-profile.php">Bảng điểm</a> <br/> <br/>
-<a href="/duancntt3/student/student-profile.php">lịch thi</a> <br/> <br/>
+<a href="/duancntt3/students/student-profile.php">Thông tin cá nhân</a> <br/> <br/>
+<a href="/duancntt3/students/student-bangdiem.php">Bảng điểm</a> <br/> <br/>
+<a href="/duancntt3/students/student-profile.php">Bảng điểm</a> <br/> <br/>
+<a href="/duancntt3/students/student-profile.php">lịch thi</a> <br/> <br/>
 
 
                     <form method="get" action="trang_sinhvien.php">

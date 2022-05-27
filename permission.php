@@ -7,12 +7,8 @@ if (isset($_SESSION['user_id']) == false) {
 		// Ngược lại nếu đã đăng nhập
 		$permission = $_SESSION['permission'];
 		// Kiểm tra quyền của người đó có phải là admin hay không
-		if ($permission == '3') {
 
-			echo "Bạn không đủ quyền truy cập vào trang này<br>";
-			echo "<a href='login/dangnhap.php'> Click để về lại</a>";
-			exit();
-		}
+
 
 	}
 }
