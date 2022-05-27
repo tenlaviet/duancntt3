@@ -41,18 +41,18 @@ disconnect_db();
             <table class="content-table">
                 <thead>
                     <tr>
-                        <th>Mã sinh viên</td>
-                        <th>Họ tên</td>
-                        <th>Giới tính</td>
-                        <th>Ngày sinh</td>
-                        <th>Lớp</td>
-                        <th>Major</td>
-                        <th>ID tài khoản</td>
-                        <th>Mật khẩu</td>
-                        <th>CMND</td>
-                        <th>Email</td>
-                        <th>SDT</td>
-                        <th>Options</td>
+                        <th>Mã Sinh Viên</th>
+                        <th>Họ Tên</th>
+                        <th>Giới Tính</th>
+                        <th>Ngày Sinh</th>
+                        <th>Lớp</th>
+                        <th>Major</th>
+                        <th>ID Tài Khoản</th>
+                        <th>Mật Khẩu</th>
+                        <th>CMND</th>
+                        <th>Email</th>
+                        <th>SDT</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <?php
@@ -82,9 +82,9 @@ disconnect_db();
                     <td><?php echo $item['SDT']; ?></td>
                     <td>
                         <form method="post" action="student-delete.php">
-                            <input onclick="window.location = 'student-edit.php?id=<?php echo $item['user_id']; ?>'" type="button" value="Sửa"/>
+                            <input onclick="window.location = 'student-edit.php?id=<?php echo $item['user_id']; ?>'" type="button" value="Sửa" class="fix button"/>
                             <input type="hidden" name="id" value="<?php echo $item['user_id']; ?>"/>
-                            <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
+                            <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa" class="delete button"/>
                         </form>
                     </td>
                 </tr>

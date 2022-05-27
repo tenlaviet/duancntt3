@@ -19,6 +19,7 @@ disconnect_db();
         <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
         <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
         <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -32,18 +33,20 @@ disconnect_db();
                 </form>
             </div>
             <a href="course-add.php"class="student-add"><i class="fa-solid fa-circle-plus"></i>Thêm sinh viên</a>
-            <table width="100%" border="1" cellspacing="0" cellpadding="10">
-                <tr>
-                    <td>ID</td>
-                    <td>Môn</td>
-                    <td>Học kì</td>
-                    <td>Phòng học</td>
-                    <td>Giáo Viên</td>
-                    <td>Thứ</td>
-                    <td>Ca học</td>
-                    <td>Ngày thi</td>                                
-                </tr>
-
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Môn</th>
+                        <th>Học Kì</th>
+                        <th>Phòng Học</th>
+                        <th>Giáo Viên</th>
+                        <th>Thứ</th>
+                        <th>Ca Học</th>
+                        <th>Ngày Thi</th>
+                        <th>Options</th>                                
+                    </tr>
+                </thead>
                 <?php
             if (isset($_GET['search']) && $_GET['search'] != '') 
             {
@@ -68,12 +71,12 @@ disconnect_db();
                     <td><?php echo $item['NgayThi']; ?></td>
                     <td>
                         <form method="post" action="course-delete.php">
-                            <input onclick="window.location = 'course-edit.php?id=<?php echo $item['id']; ?>'" type="button" value="Sửa"/>
+                            <input onclick="window.location = 'course-edit.php?id=<?php echo $item['id']; ?>'" type="button" value="Sửa" class="fix button"/>
                             <input type="hidden" name="id" value="<?php echo $item['id']; ?>"/>
-                            <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
+                            <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa" class="delete button"/>
                         </form>
                         <form method="get" action="course-diem-list.php">
-                            <input onclick="window.location = 'course-diem-list.php?id=<?php echo $item['id']; ?>'" type="button" value="danhsach"/>
+                            <input onclick="window.location = 'course-diem-list.php?id=<?php echo $item['id']; ?>'" type="button" value="Danh Sách" class="list button"/>
                             <input type="hidden" name="id" value="<?php echo $item['id']; ?>"/>
                         </form>
                     </td>

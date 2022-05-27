@@ -1,7 +1,7 @@
 .content-table{
     border-collapse: collapse;
     font-size: 0.9em;
-    min-width: 400px;
+    width: 100%;
     margin: 25px 0;
     border-radius: 10px 10px 0 0;
     overflow: hidden;
@@ -20,10 +20,42 @@
     padding: 12px 15px;
 }
 
+.content-table th:last-of-type,
+.content-table td:last-of-type {
+    padding: 12px 0;
+    text-align: center;
+}
+
 .content-table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
 
 .content-table tbody tr:last-of-type{
     border-bottom: 2px solid #579CDD;
+}
+
+.button {
+    border: none;
+    outline: none;
+    width: 75px;
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.fix {
+    background-color: #579CDD;
+}
+
+.delete {
+    background-color: red;
+}
+
+.list{
+    background-color: #ffba42;
+    width: 100px;
 }

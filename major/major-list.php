@@ -19,6 +19,7 @@ disconnect_db();
         <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
         <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
         <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -32,12 +33,14 @@ disconnect_db();
                 </form>
             </div>
             <a href="major-add.php"class="student-add"><i class="fa-solid fa-circle-plus"></i></i>Thêm sinh viên</a>
-            <table width="100%" border="1" cellspacing="0" cellpadding="10">
-                <tr>
-                    <td>Mã chuyên ngành</td>
-                    <td>Họ tên</td>
-                </tr>
-
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Mã Chuyên Ngành</th>
+                        <th>Họ Tên</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
                 <?php
             if (isset($_GET['search']) && $_GET['search'] != '') 
             {
@@ -56,9 +59,9 @@ disconnect_db();
                     <td><?php echo $item['TenCn']; ?></td>
                     <td>
                         <form method="post" action="major-delete.php">
-                            <input onclick="window.location = 'major-edit.php?id=<?php echo $item['MaCn']; ?>'" type="button" value="Sửa"/>
+                            <input onclick="window.location = 'major-edit.php?id=<?php echo $item['MaCn']; ?>'" type="button" value="Sửa" class="fix button"/>
                             <input type="hidden" name="id" value="<?php echo $item['MaCn']; ?>"/>
-                            <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
+                            <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa" class="delete button"/>
                         </form>
                     </td>
                 </tr>

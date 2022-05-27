@@ -19,6 +19,7 @@ disconnect_db();
         <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
         <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
         <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -32,22 +33,23 @@ disconnect_db();
                 </form>
             </div>
             <a href="giaovien-add.php" class="student-add"><i class="fa-solid fa-circle-plus"></i>Thêm sinh viên</a>
-            <table width="100%" border="1" cellspacing="0" cellpadding="10">
-                <tr>
-                    <td>Mã giao vien</td>
-                    <td>Họ tên</td>
-                    <td>Giới tính</td>
-                    <td>Ngày sinh</td>
-                    <td>Chu nhiem</td>
-                    <td>chuyen nganh</td>
-                    <td>ID tai khoan</td>
-                    <td>mat khau</td>
-                    <td>CMND</td>
-                    <td>email</td>
-                    <td>SDT</td>
-                    <td>Options</td>
-                </tr>
-
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Mã Giáo Viên</th>
+                        <th>Họ Tên</th>
+                        <th>Giới Tính</th>
+                        <th>Ngày Sinh</th>
+                        <th>Chủ Nhiệm</th>
+                        <th>Chuyên Ngành</th>
+                        <th>ID Tài Khoản</th>
+                        <th>Mật Khẩu</th>
+                        <th>CMND</th>
+                        <th>Email</th>
+                        <th>SDT</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
                 <?php
             if (isset($_GET['search']) && $_GET['search'] != '') 
             {
@@ -75,9 +77,9 @@ disconnect_db();
                     <td><?php echo $item['SDT']; ?></td>
                     <td>
                         <form method="post" action="giaovien-delete.php">
-                            <input onclick="window.location = 'giaovien-edit.php?id=<?php echo $item['user_id']; ?>'" type="button" value="Sửa"/>
+                            <input onclick="window.location = 'giaovien-edit.php?id=<?php echo $item['user_id']; ?>'" type="button" value="Sửa" class="fix button"/>
                             <input type="hidden" name="id" value="<?php echo $item['user_id']; ?>"/>
-                            <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
+                            <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa" class="delete button"/>
                         </form>
                     </td>
                 </tr>
