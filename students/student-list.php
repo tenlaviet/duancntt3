@@ -91,5 +91,6 @@ disconnect_db();
                 <?php } ?>
             </table>
         </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>
