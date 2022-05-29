@@ -63,7 +63,7 @@
 
 
 /* Add student */
-.add-table-wrapper {
+.table-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,4 +111,26 @@
     padding: 20px;
     width: 100px;
     margin-bottom: 50px;
+}
+
+/* Profile */
+.profile-table{
+    border-collapse: collapse;
+    font-size: 1.3em;
+    min-width: 400px;
+    margin: 25px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-table th {
+    text-align: left;
+    color: white;
+    background-color: #579CDD;
+}
+
+.profile-table th,
+.profile-table td {
+    padding: 18px;
 }
