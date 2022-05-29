@@ -18,15 +18,12 @@ if (!empty($_POST['add_giaovien']))
     $data['user_id']    = isset($_POST['userid']) ? $_POST['userid'] : '';
     $data['password']    = isset($_POST['password']) ? $_POST['password'] : '';  
     $data['permission']    = isset($_POST['permission']) ? $_POST['permission'] : ''; 		
-  			//$name = $_POST["name"];
-			//$sex = $_POST["sex"];
-  			//$birthday = $_POST["birthday"];
-			//$cmnd = $_POST["cmnd"];
-  			//$chunhiem = $_POST["chunhiem"];
-  			//$major = $_POST["major"];
-			//$email = $_POST["email"];
     
 	$MaGv = $data['MaGv'];
+    $CMND = $data['CMND'];
+    $email = $data['email'];
+    $SDT = $data['SDT'];
+     $user_id = $data['user_id'];
 
   			
 
@@ -43,6 +40,10 @@ if (!empty($_POST['add_giaovien']))
     if (empty($data['GioiTinh'])){
 	$errors['GioiTinh'] = 'Vui lòng điền thông tin';
     }
+    if (empty($data['NgaySinh'])){
+    $errors['NgaySinh'] = 'Vui lòng điền thông tin';
+    }
+
     if (empty($data['MaCn'])){
     $errors['MaCn'] = 'Vui lòng điền thông tin';
 	}
@@ -50,18 +51,64 @@ if (!empty($_POST['add_giaovien']))
 	$errors['CMND'] = 'Vui lòng điền thông tin';
 
 	}
-    //if (empty($password)){
-	//$errors['matkhau'] = 'Chưa nhập Mật Khẩu';
-//
-	//}
+    if (empty($data['SDT'])){
+    $errors['SDT'] = 'Vui lòng điền thông tin';
+
+    }
+
+    if (empty($data['email'])){
+    $errors['email'] = 'Vui lòng điền thông tin';
+    }
+    
+
+    if (empty($data['password'])){
+	$errors['password'] = 'Chưa nhập Mật Khẩu';
+
+	}
+    if (empty($data['user_id'])){
+    $errors['user_id'] = 'Vui lòng điền thông tin';
+
+    }
+     
+    $sql="select * from user where id='$user_id'";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['user_id1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
 	$sql="select * from giaovien where MaGv='$MaGv'";
 	$kt=mysqli_query($conn, $sql);	
 	if (mysqli_num_rows($kt) > 0){
-	$errors['MaGv1'] = 'trung du lieu';
+	$errors['MaGv1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
 		}
+    $sql="select * from user where SDT='$SDT' and SDT !=''";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['SDT1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
+    $sql="select * from user where email='$email' and email !=''";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['email1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
+    $sql="select * from user where CMND='$CMND' and CMND !=''";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['CMND1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
+    $sql="select * from user where id='$user_id' and id !=''";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['user_id1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
+
 	if (!$errors){
-        add_giaovien($data['user_id'], $data['MaGv'], $data['password'], $data['HoTen'], $data['GioiTinh'], $data['NgaySinh'], $data['email'], $data['CMND'], $data['SDT'], 
-            $data['ChuNhiem'], $data['MaCn'] , $data['permission']);
+        add_giaovien($data['user_id'], $data['MaGv'], $data['password'], $data['HoTen'], $data['GioiTinh'], $data['NgaySinh'], $data['email'], $data['CMND'], $data['SDT'], $data['ChuNhiem'], $data['MaCn'] , '2');
         //Trở về trang danh sách
 	
    	
@@ -90,26 +137,42 @@ disconnect_db();
         <form method="post" action="giaovien-add.php">
             <table width="50%" border="1" cellspacing="0" cellpadding="10">
                 <tr>
-                    <td>user id</td>
+                    <td>User ID</td>
                     <td>
                         <input type="text" name="userid" value=""/>
+
+                        <?php if (!empty($errors['user_id']))
+                        { echo $errors['user_id'];}
+                        if (!empty($errors['user_id1']))
+                        {
+                            echo $errors['user_id1'];
+                        }
+                        ?>
                     </td>
                 </tr>                
                 <tr>
-                    <td>ID Giáo Viên</td>
+                    <td>Mã giáo viên</td>
                     <td>
                         <input type="text" name="MaGv" value=""/>
-                        <?php if (!empty($errors['MaGv'])) echo $errors['MaGv'];?>
+
+                        <?php if (!empty($errors['MaGv']))
+                        { echo $errors['MaGv'];}
+                        if (!empty($errors['MaGv1']))
+                        {
+                            echo $errors['MaGv1'];
+                        }
+                        ?>
                     </td>
                 </tr>
                 <tr>
                     <td>password</td>
                     <td>
                         <input type="text" name="password" value=""/>
+                        <?php if (!empty($errors['password'])) echo $errors['password'];?>
                     </td>
                 </tr> 
                 <tr>
-                    <td>Tên</td>
+                    <td>Họ và Tên</td>
                     <td>
                         <input type="text" name="name" value=""/>
                         <?php if (!empty($errors['HoTen'])) echo $errors['HoTen']; ?>
@@ -129,7 +192,7 @@ disconnect_db();
                     <td>Ngày sinh</td>
                     <td>
                         <input type="date" name="birthday" value=""/>
-
+                        <?php if (!empty($errors['NgaySinh'])) echo $errors['NgaySinh']; ?>
                     </td>
                 </tr>
 
@@ -143,35 +206,47 @@ disconnect_db();
                     <td>Chuyên ngành</td>
                     <td>
                         <input type="text" name="major" value=""/>
-                        <?php if (!empty($errors['MaCn'])) echo $errors['MaCn'];?>
+                        
                     </td>
                 </tr>
                 <tr>
                     <td>CMND</td>
                     <td>
                         <input type="text" name="cmnd" value=""/>
-                         <?php if (!empty($errors['CMND'])) echo $errors['CMND']; ?>
+                                                 <?php if (!empty($errors['CMND']))
+                        { echo $errors['CMND'];}
+                        if (!empty($errors['CMND1']))
+                        {
+                            echo $errors['CMND1'];
+                        }?>
                     </td>
                 </tr>
                 <tr>
                     <td>email</td>
                     <td>
                         <input type="text" name="email" value=""/>
-                        <?php if (!empty($errors['email'])) echo $errors['email'];?>
+                                                <?php if (!empty($errors['email']))
+                        { echo $errors['email'];}
+                        if (!empty($errors['email1']))
+                        {
+                            echo $errors['email1'];
+                        }?>
                     </td>
                 </tr>
                 <tr>
                     <td>SDT</td>
                     <td>
                         <input type="number" name="sdt" value=""/>
+                                                <?php if (!empty($errors['SDT']))
+                        { echo $errors['SDT'];}
+                        if (!empty($errors['SDT1']))
+                        {
+                            echo $errors['SDT1'];
+                        }?>
+
                     </td>
                 </tr>
-                <tr>
-                    <td>permission</td>
-                    <td>
-                        <input type="number" name="permission" value=""/>
-                    </td>
-                </tr>                
+                
                 <tr>
                     <td></td>
                     <td>

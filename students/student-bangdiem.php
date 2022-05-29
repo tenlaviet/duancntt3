@@ -23,14 +23,14 @@ require '../libs/students.php';
 
         <table width="100%" border="1" cellspacing="0" cellpadding="10">
             <tr>
-                <td>id</td>
-                <td>mamon</td>
-                <td>tenmon</td>
-                <td>hocki</td>
-                <td>diemthi1</td>
-                <td>diemquatrinh</td>
-                <td>diemthi2</td>
-                <td>diemtongket</td>                               
+                <td>ID khóa học</td>
+                <td>Mã môn</td>
+                <td>Tên môn</td>
+                <td>học kì</td>
+                <td>Điểm thi 1</td>
+                <td>Điểm quá trình</td>
+                <td>Điểm thi 2</td>
+                <td>Điểm tổng kết</td>                               
             </tr>
 
             <?php

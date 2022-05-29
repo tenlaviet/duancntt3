@@ -32,13 +32,14 @@ header('Location: login/dangnhap.php');
     <body>
         <h1>Danh sách sinh vien</h1>
             <div align="center">
-            <form action="student-list.php" method="get">
-                Search: <input type="text" name="search" />
-                <input type="submit" name="ok" value="search" />
-            </form>
+
+
         </div>
-        <a href="/duancntt3/trangchu.php">trang chu</a> <br/> <br/>
-        <a href="student-add.php">Thêm sinh viên</a> <br/> <br/>
+        <form method="get" action="student-profile.php">
+        <input onclick="return confirm('Bạn có chắc muốn logout không?');" type="submit" name="logout" value="logout"/>
+        </form>
+        <a href="/duancntt3/trang_sinhvien.php">trang chu</a> <br/> <br/>
+
         <a href="/duancntt3/login/doimatkhau.php">doi mat khau</a> <br/> <br/>
         <table width="100%" border="1" cellspacing="0" cellpadding="10">
             <tr>
@@ -46,9 +47,9 @@ header('Location: login/dangnhap.php');
                 <td>Họ tên</td>
                 <td>Giới tính</td>
                 <td>Ngày sinh</td>
-                <td>lop</td>
-                <td>major</td>
-                <td>ID tai khoan</td>
+                <td>Lớp</td>
+                <td>Chuyên ngành</td>
+                
                 <td>CMND</td>
                 <td>email</td>
                 <td>SDT</td>
@@ -67,7 +68,7 @@ header('Location: login/dangnhap.php');
                 <td><?php echo $item['NgaySinh']; ?></td>
                 <td><?php echo $item['MaLop']; ?></td>
                 <td><?php echo $item['MaCn']; ?></td>
-                <td><?php echo $item['user_id']; ?></td>
+               
                 <td><?php echo $item['CMND']; ?></td>
                 <td><?php echo $item['email']; ?></td>
                 <td><?php echo $item['SDT']; ?></td>
@@ -75,6 +76,11 @@ header('Location: login/dangnhap.php');
                 </td>
             </tr>
             <?php } ?>
+                                                <form method="get" action="student-profile-edit.php">
+                            <input onclick="window.location = 'student-profile-edit.php?id=<?php echo $item['user_id']; ?>'" type="button" value="sửa thông tin cá nhân" class="fix button"/>
+                            <input type="hidden" name="id" value="<?php echo $item['user_id']; ?>"/>
+                        </form>
+
         </table>
     </body>
 </html>

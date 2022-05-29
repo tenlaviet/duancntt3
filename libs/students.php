@@ -115,7 +115,7 @@ if ($mysqli -> connect_errno) {
   exit();
 }
 
-$sql = "INSERT INTO user(id, username, password, permission, CMND, SDT, email) VALUES ('$student_id','$student_code','$student_password','$student_permission','$student_CMND','$student_SDT','$student_email');";
+$sql = "INSERT INTO `user`(`id`, `username`, `password`, `CMND`, `SDT`, `email`, `permission`) VALUES ('$student_id','$student_code','$student_password','$student_CMND','$student_SDT','$student_email','$student_permission');";
 $sql1 = "INSERT INTO sinhvien(MaSv, HoTen, GioiTinh, NgaySinh,MaLop, MaCn, user_id) VALUES ('$student_code','$student_name','$student_sex', '$student_birthday', '$student_class','$student_major','$student_id');";
 
 // Execute multi query
@@ -434,7 +434,7 @@ function edit_major($major_code, $major_name)
     // Câu truy sửa
     
     $sql = " 
-    UPDATE `major` SET `TenCn`='$major_name' WHERE MaCn = '$major_code'
+    UPDATE `major` SET `TenCn`='$major_name' WHERE `MaCn` = '$major_code';
     ";
     
     // Thực hiện câu truy vấn
@@ -1044,4 +1044,46 @@ function change_password($membersID, $password)
     $query = mysqli_query($conn, $sql);
     
     return $query;
+}
+
+
+
+function edit_profile_student($student_id, $student_name, $student_sex, $student_birthday, $student_email, $student_CMND, $student_SDT)
+{
+    // Gọi tới biến toàn cục $conn
+    global $conn;
+    
+
+    $mysqli = new mysqli("localhost","root","","duancntt");
+
+    if ($mysqli -> connect_errno) {
+    echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+    exit();
+    }
+    
+    // Chống SQL Injection
+    $student_name       = addslashes($student_name);
+    $student_sex        = addslashes($student_sex);
+    $student_birthday   = addslashes($student_birthday);
+
+    $student_email   = addslashes($student_email);
+    $student_class   = addslashes($student_class);
+    $student_CMND   = addslashes($student_CMND);
+    $student_id       = addslashes($student_id);
+
+    $student_SDT   = addslashes($student_SDT);
+
+   
+    
+    // Câu truy sửa
+    $sql = "UPDATE `sinhvien` SET `HoTen`='$student_name',`GioiTinh`='$student_sex',`NgaySinh`='$student_birthday' WHERE user_id = '$student_id';";
+    $sql1 = "UPDATE `user` SET `CMND`='$student_CMND',`SDT`='$student_SDT',`email`='$student_email' WHERE id= '$student_id';";
+   
+    
+    
+    // Thực hiện câu truy vấn
+$mysqli -> query($sql);
+$mysqli -> query($sql1);
+
+$mysqli -> close();
 }

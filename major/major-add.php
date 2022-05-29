@@ -31,6 +31,7 @@ if (!empty($_POST['add_major']))
 	if (mysqli_num_rows($kt) > 0){
 	$errors['macn'] = 'trung du lieu';
 		}
+    
 	if (!$errors){
         add_major($data['MaCn'], $data['TenCn']);
         
