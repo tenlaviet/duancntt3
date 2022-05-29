@@ -58,12 +58,12 @@ disconnect_db();
                 <?php
             if (isset($_GET['search']) && $_GET['search'] != '') 
             {
-                $sql = 'select * FROM `sinhvien` s inner join `user` u on s.user_id = u.id where s.MaSv like "%'.$_GET['search'].'%" or s.HoTen like "%'.$_GET['search'].'%" or s.GioiTinh like "%'.$_GET['search'].'%" or s.MaCn like "%'.$_GET['search'].'%"
+                $sql = 'select * FROM `sinhvien` s inner join `user` u on s.user_id = u.id inner join major m on s.MaCn = m.MaCn where s.MaSv like "%'.$_GET['search'].'%" or s.HoTen like "%'.$_GET['search'].'%" or s.GioiTinh like "%'.$_GET['search'].'%" or s.MaCn like "%'.$_GET['search'].'%" or m.TenCn like "%'.$_GET['search'].'%"
                 or s.NgaySinh like "%'.$_GET['search'].'%" or u.email like "%'.$_GET['search'].'%" or s.MaLop like "%'.$_GET['search'].'%" or u.SDT like "%'.$_GET['search'].'%" or u.CMND like "%'.$_GET['search'].'%"'
                 ;
             } 
                 else {
-                    $sql = 'select s.MaSv, s.HoTen, s.GioiTinh, s.NgaySinh, s.MaLop, s.MaCn, s.user_id, u.password, u.CMND, u.email, u.SDT FROM `sinhvien` s inner join `user` u on s.user_id = u.id';
+                    $sql = 'select s.MaSv, s.HoTen, s.GioiTinh, s.NgaySinh, s.MaLop, s.MaCn, m.TenCn, s.user_id, u.password, u.CMND, u.email, u.SDT FROM `sinhvien` s inner join `user` u on s.user_id = u.id inner join major m on s.MaCn = m. MaCn' ;
                     }
                 $students = executeResult($sql);
                 $index = 1;
@@ -74,7 +74,7 @@ disconnect_db();
                     <td><?php echo $item['GioiTinh']; ?></td>
                     <td><?php echo $item['NgaySinh']; ?></td>
                     <td><?php echo $item['MaLop']; ?></td>
-                    <td><?php echo $item['MaCn']; ?></td>
+                    <td><?php echo $item['TenCn']; ?></td>
                     <td><?php echo $item['user_id']; ?></td>
                     <td><?php echo $item['password']; ?></td>
                     <td><?php echo $item['CMND']; ?></td>

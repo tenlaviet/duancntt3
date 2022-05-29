@@ -32,7 +32,7 @@ disconnect_db();
                     <input type="submit" name="ok" value="search" class="search-btn" />
                 </form>
             </div>
-            <a href="giaovien-add.php" class="student-add"><i class="fa-solid fa-circle-plus"></i>Thêm sinh viên</a>
+            <a href="giaovien-add.php" class="student-add"><i class="fa-solid fa-circle-plus"></i>Thêm giáo viên</a>
             <table class="content-table">
                 <thead>
                     <tr>
@@ -53,12 +53,12 @@ disconnect_db();
                 <?php
             if (isset($_GET['search']) && $_GET['search'] != '') 
             {
-                $sql = 'select * FROM `giaovien` g inner join `user` u on g.user_id = u.id where g.MaSv like "%'.$_GET['search'].'%" or g.HoTen like "%'.$_GET['search'].'%" or g.GioiTinh like "%'.$_GET['search'].'%" or g.MaCn like "%'.$_GET['search'].'%"
-                or g.NgaySinh like "%'.$_GET['search'].'%" or u.email like "%'.$_GET['search'].'%" or g.MaLop like "%'.$_GET['search'].'%" or u.SDT like "%'.$_GET['search'].'%" or u.CMND like "%'.$_GET['search'].'%"'
+                $sql = 'select * FROM `giaovien` g inner join `user` u on g.user_id = u.id inner join major m on g.MaCn = m.MaCn where g.MaGv like "%'.$_GET['search'].'%" or g.HoTen like "%'.$_GET['search'].'%" or g.GioiTinh like "%'.$_GET['search'].'%" or g.MaCn like "%'.$_GET['search'].'%" or m.TenCn like "%'.$_GET['search'].'%"
+                or g.NgaySinh like "%'.$_GET['search'].'%" or u.email like "%'.$_GET['search'].'%" or g.ChuNhiem like "%'.$_GET['search'].'%" or u.SDT like "%'.$_GET['search'].'%" or u.CMND like "%'.$_GET['search'].'%"'
                 ;
             } 
                 else {
-                    $sql = 'select g.MaGv, g.HoTen, g.GioiTinh, g.NgaySinh, g.ChuNhiem, g.MaCn, g.user_id, u.password, u.CMND, u.email, u.SDT FROM `giaovien` g inner join `user` u on g.user_id = u.id';
+                    $sql = 'select g.MaGv, g.HoTen, g.GioiTinh, g.NgaySinh, g.ChuNhiem, m.TenCn, g.user_id, u.password, u.CMND, u.email, u.SDT FROM `giaovien` g inner join `user` u on g.user_id = u.id inner join major m on g.MaCn = m.MaCn' ;
                     }
                 $giaovien = executeResult($sql);
                 $index = 1;
@@ -69,7 +69,7 @@ disconnect_db();
                     <td><?php echo $item['GioiTinh']; ?></td>
                     <td><?php echo $item['NgaySinh']; ?></td>
                     <td><?php echo $item['ChuNhiem']; ?></td>
-                    <td><?php echo $item['MaCn']; ?></td>
+                    <td><?php echo $item['TenCn']; ?></td>
                     <td><?php echo $item['user_id']; ?></td>
                     <td><?php echo $item['password']; ?></td>
                     <td><?php echo $item['CMND']; ?></td>

@@ -9,7 +9,7 @@ disconnect_db();
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Danh sách chuyên ngành</title>
+        <title>Danh sách user</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,44 +25,43 @@ disconnect_db();
     <body>
         <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
         <div class="wrapper">
-            <h1>Danh sách chuyên ngành</h1>
+            <h1>Danh sách user</h1>
                 <div align="center">
-                <form action="major-list.php" method="get" class="search-box">
+                <form action="user-list.php" method="get" class="search-box">
                     <input type="text" name="search" class="search-input" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"/>
-                    <input type="submit" name="ok" value="search" class="search-btn"/>
+                    <input type="submit" name="ok" value="search" class="search-btn" />
                 </form>
             </div>
-            <a href="major-add.php"class="student-add"><i class="fa-solid fa-circle-plus"></i></i>Thêm sinh viên</a>
             <table class="content-table">
                 <thead>
                     <tr>
-                        <th>Mã chuyên hgành</th>
-                        <th>Tên chuyên ngành</th>
-                        <th>Options</th>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>CMND</th>
+                        <th>SDT</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <?php
             if (isset($_GET['search']) && $_GET['search'] != '') 
             {
-                
-                $sql = 'select * from major where MaCn like "%'.$_GET['search'].'%" or TenCn like "%'.$_GET['search'].'%"'
+                $sql = 'select * from user where id like "%'.$_GET['search'].'%" or username like "%'.$_GET['search'].'%" or CMND like "%'.$_GET['search'].'%" or SDT like "%'.$_GET['search'].'%" or Email like "%'.$_GET['search'].'%" or Permission like "%'.$_GET['search'].'%"'
                 ;
             } 
                 else {
-                    $sql = 'select * from major';
+                    $sql = 'select * from user';
                     }
-                $major = executeResult($sql);
+                $user = executeResult($sql);
                 $index = 1;
-                foreach ($major as $item){ ?>
+                foreach ($user as $item){ ?>
                 <tr>
-                    <td><?php echo $item['MaCn']; ?></td>
-                    <td><?php echo $item['TenCn']; ?></td>
+                    <td><?php echo $item['id']; ?></td>
+                    <td><?php echo $item['username']; ?></td>
+                    <td><?php echo $item['CMND']; ?></td>
+                    <td><?php echo $item['SDT']; ?></td>
+                    <td><?php echo $item['email']; ?></td>
+                    <td><?php echo $item['permission']; ?></td>
                     <td>
-                        <form method="post" action="major-delete.php">
-                            <input onclick="window.location = 'major-edit.php?id=<?php echo $item['MaCn']; ?>'" type="button" value="Sửa" class="fix button"/>
-                            <input type="hidden" name="id" value="<?php echo $item['MaCn']; ?>"/>
-                            <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa" class="delete button"/>
-                        </form>
                     </td>
                 </tr>
                 <?php } ?>

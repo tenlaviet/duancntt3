@@ -21,8 +21,10 @@ if (!empty($_POST['add_student']))
 
     
 	$masv = $data['MaSv'];
-    $email = $data['email'];
     $CMND = $data['CMND'];
+    $email = $data['email'];
+    $SDT = $data['SDT'];
+     $user_id = $data['user_id'];
 
   			
 
@@ -30,49 +32,78 @@ if (!empty($_POST['add_student']))
  		// Kiểm tra thông tin trùng lặp
     $errors = array();
     if (empty($data['MaSv'])){
-        $errors['MaSv'] = 'Chưa nhập Mã sinh viên';
-    }	
+        $errors['MaSv'] = 'Vui lòng điền thông tin';
+    }   
     if (empty($data['HoTen'])){
-        $errors['HoTen'] = 'Chưa nhập tên sinh viên';
+        $errors['HoTen'] = 'Vui lòng điền thông tin';
     }
      
     if (empty($data['GioiTinh'])){
-	$errors['GioiTinh'] = 'Chưa nhập giới tính';
+    $errors['GioiTinh'] = 'Vui lòng điền thông tin';
+    }
+    if (empty($data['NgaySinh'])){
+    $errors['NgaySinh'] = 'Vui lòng điền thông tin';
+    }
 
-	}
+    if (empty($data['MaCn'])){
+    $errors['MaCn'] = 'Vui lòng điền thông tin';
+    }
     if (empty($data['CMND'])){
-	$errors['CMND'] = 'Chưa nhập CMND';
+    $errors['CMND'] = 'Vui lòng điền thông tin';
 
-	}
+    }
+    if (empty($data['SDT'])){
+    $errors['SDT'] = 'Vui lòng điền thông tin';
+
+    }
+
     if (empty($data['email'])){
-    $errors['email'] = 'Chưa nhập email';
+    $errors['email'] = 'Vui lòng điền thông tin';
+    }
+    
+
+    if (empty($data['password'])){
+    $errors['password'] = 'Chưa nhập Mật Khẩu';
+
+    }
+    if (empty($data['user_id'])){
+    $errors['user_id'] = 'Vui lòng điền thông tin';
 
     }
     // kiem tra trung ma sinh vien
-	$sql="select * from sinhvien where MaSv='$masv'";
-	$kt=mysqli_query($conn, $sql);	
-	if (mysqli_num_rows($kt) > 0){
-	$errors['MaSv1'] = 'trung du lieu';
-	}
-    // kiem tra trung email
-    $sql2="select * from giaovien where email ='$email';";
-    $kt2=mysqli_query($conn, $sql2);
-    $sql3="select * from sinhvien where email ='$email';";
-    $kt3=mysqli_query($conn, $sql3);
-    if (mysqli_num_rows($kt2) > 0 or mysqli_num_rows($kt3) > 0){
-    $errors['MaSv2'] = 'trung du lieu';
-    }
-    // kiem tra trung CMND
-    $sql4="select * from giaovien where CMND ='$CMND';";
-    $kt4=mysqli_query($conn, $sql4);
-    $sql5="select * from sinhvien where CMND ='$CMND';";
-    $kt5=mysqli_query($conn, $sql5);
-    if (mysqli_num_rows($kt4) > 0 or mysqli_num_rows($kt5) > 0){
-    $errors['MaSv3'] = 'trung du lieu';
-    }
+    $sql="select * from sinhvien where MaSv='$masv'";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['MaSv1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
+    $sql="select * from user where SDT='$SDT' and SDT !=''";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['SDT1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
+    $sql="select * from user where email='$email' and email !=''";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['email1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
+    $sql="select * from user where CMND='$CMND' and CMND !=''";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['CMND1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
+    $sql="select * from user where id='$user_id' and id !=''";
+    $kt=mysqli_query($conn, $sql);  
+    if (mysqli_num_rows($kt) > 0){
+    $errors['user_id1'] = 'Trùng dữ liệu';
+    mysqli_free_result($kt);
+        }
 	if (!$errors){
-        add_student($data['user_id'], $data['MaSv'], $data['password'], $data['HoTen'], $data['GioiTinh'], $data['NgaySinh'], $data['email'], $data['CMND'], $data['SDT'], 
-            $data['MaLop'], $data['MaCn'] , $data['permission']);
+        add_student($user_id, $data['MaSv'], $data['password'], $data['HoTen'], $data['GioiTinh'], $data['NgaySinh'], $data['email'], $data['CMND'], $data['SDT'], 
+            $data['MaLop'], $data['MaCn'] , '3');
         //Trở về trang danh sách
 	
 
@@ -98,19 +129,33 @@ disconnect_db();
         <h1>Thêm sinh vien </h1>
         <a href="student-list.php">Trở về</a> <br/> <br/>
         <form method="post" action="student-add.php">
-            <table width="50%" border="1" cellspacing="0" cellpadding="10">
-                 <tr>
-                    <td>user id</td>
+            <table width="50%" border="1" cellspacing="0" cellpadding="10">               
+                <tr>
+                    <td>User ID</td>
                     <td>
                         <input type="text" name="userid" value=""/>
+
+                        <?php if (!empty($errors['user_id']))
+                        { echo $errors['user_id'];}
+                        if (!empty($errors['user_id1']))
+                        {
+                            echo $errors['user_id1'];
+                        }
+                        ?>
                     </td>
-                </tr>               
+                </tr>                
                 <tr>
                     <td>Mã sinh viên</td>
                     <td>
                         <input type="text" name="masv" value=""/>
-                        <?php if (!empty($errors['MaSv'])) echo $errors['MaSv'];?>
-			             <?php if (!empty($errors['MaSv1'])) echo $errors['MaSv1'];?>
+
+                        <?php if (!empty($errors['MaSv']))
+                        { echo $errors['MaSv'];}
+                        if (!empty($errors['MaSv1']))
+                        {
+                            echo $errors['MaSv1'];
+                        }
+                        ?>
                     </td>
                 </tr>
                 <tr>
@@ -143,15 +188,6 @@ disconnect_db();
                     </td>
                 </tr>
                 <tr>
-                    <td>CMND</td>
-                    <td>
-                        <input type="text" name="cmnd" value=""/>
-			             <?php if (!empty($errors['CMND'])) echo $errors['CMND']; ?>
-                         <?php if (!empty($errors['MaSv3'])) echo $errors['MaSv3']; ?>
-
-                    </td>
-                </tr>
-                <tr>
                     <td>Lớp</td>
                     <td>
                         <input type="text" name="groupid" value=""/>
@@ -163,26 +199,43 @@ disconnect_db();
                         <input type="text" name="major" value=""/>
                     </td>
                 </tr>
+                    <td>CMND</td>
+                    <td>
+                        <input type="text" name="cmnd" value=""/>
+                                                 <?php if (!empty($errors['CMND']))
+                        { echo $errors['CMND'];}
+                        if (!empty($errors['CMND1']))
+                        {
+                            echo $errors['CMND1'];
+                        }?>
+                    </td>
+                </tr>
                 <tr>
                     <td>email</td>
                     <td>
                         <input type="text" name="email" value=""/>
-                        <?php if (!empty($errors['email'])) echo $errors['email']; ?>
-                         <?php if (!empty($errors['MaSv2'])) echo $errors['MaSv2']; ?>
+                                                <?php if (!empty($errors['email']))
+                        { echo $errors['email'];}
+                        if (!empty($errors['email1']))
+                        {
+                            echo $errors['email1'];
+                        }?>
                     </td>
                 </tr>
                 <tr>
                     <td>SDT</td>
                     <td>
                         <input type="number" name="sdt" value=""/>
+                                                <?php if (!empty($errors['SDT']))
+                        { echo $errors['SDT'];}
+                        if (!empty($errors['SDT1']))
+                        {
+                            echo $errors['SDT1'];
+                        }?>
+
                     </td>
                 </tr>
-                <tr>
-                    <td>permission</td>
-                    <td>
-                        <input type="number" name="permission" value=""/>
-                    </td>
-                </tr>                                
+                                
                 <tr>
                     <td></td>
                     <td>
