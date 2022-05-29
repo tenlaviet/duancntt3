@@ -93,20 +93,30 @@ disconnect_db();
         <title>Thêm sinh vien</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="../img/Logo-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
+        <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
+        <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>Thêm sinh vien </h1>
-        <a href="student-list.php">Trở về</a> <br/> <br/>
-        <form method="post" action="student-add.php">
-            <table width="50%" border="1" cellspacing="0" cellpadding="10">
+        <div class="header">
+            <a href="student-list.php"><i class="fa-solid fa-arrow-left-long"></i></a>
+            <h1>Thêm Sinh viên </h1>
+        </div>
+        <form method="post" action="student-add.php" class="add-table-wrapper">
+            <table class="add-table">
                  <tr>
-                    <td>user id</td>
+                    <th>User Id</th>
                     <td>
                         <input type="text" name="userid" value=""/>
                     </td>
                 </tr>               
                 <tr>
-                    <td>Mã sinh viên</td>
+                    <th>Mã Sinh Viên</th>
                     <td>
                         <input type="text" name="masv" value=""/>
                         <?php if (!empty($errors['MaSv'])) echo $errors['MaSv'];?>
@@ -114,21 +124,21 @@ disconnect_db();
                     </td>
                 </tr>
                 <tr>
-                    <td>password</td>
+                    <th>Password</th>
                     <td>
                         <input type="text" name="password" value=""/>
                     </td>
                 </tr>                
 
                 <tr>
-                    <td>Họ tên</td>
+                    <th>Họ Tên</th>
                     <td>
                         <input type="text" name="name" value=""/>
                         <?php if (!empty($errors['HoTen'])) echo $errors['HoTen']; ?>
                     </td>
                 </tr>
                 <tr>
-                    <td>Giới tính</td>
+                    <th>Giới Tính</th>
                     <td>
                         <select name="sex">
                             <option value="Nam">Nam</option>
@@ -137,13 +147,13 @@ disconnect_db();
                     </td>
                 </tr>
                 <tr>
-                    <td>Ngày sinh</td>
+                    <th>Ngày Sinh</th>
                     <td>
                         <input type="date" name="birthday" value=""/>
                     </td>
                 </tr>
                 <tr>
-                    <td>CMND</td>
+                    <th>CMND</th>
                     <td>
                         <input type="text" name="cmnd" value=""/>
 			             <?php if (!empty($errors['CMND'])) echo $errors['CMND']; ?>
@@ -152,19 +162,19 @@ disconnect_db();
                     </td>
                 </tr>
                 <tr>
-                    <td>Lớp</td>
+                    <th>Lớp</th>
                     <td>
                         <input type="text" name="groupid" value=""/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Chuyên ngành</td>
+                    <th>Chuyên Ngành</th>
                     <td>
                         <input type="text" name="major" value=""/>
                     </td>
                 </tr>
                 <tr>
-                    <td>email</td>
+                    <th>Email</th>
                     <td>
                         <input type="text" name="email" value=""/>
                         <?php if (!empty($errors['email'])) echo $errors['email']; ?>
@@ -172,24 +182,25 @@ disconnect_db();
                     </td>
                 </tr>
                 <tr>
-                    <td>SDT</td>
+                    <th>SDT</th>
                     <td>
                         <input type="number" name="sdt" value=""/>
                     </td>
                 </tr>
                 <tr>
-                    <td>permission</td>
+                    <th>Permission</th>
                     <td>
                         <input type="number" name="permission" value=""/>
                     </td>
                 </tr>                                
-                <tr>
+                <!-- <tr>
                     <td></td>
                     <td>
                         <input type="submit" name="add_student" value="Lưu"/>
                     </td>
-                </tr>
+                </tr> -->
             </table>
+            <input type="submit" name="add_student" value="Lưu" class="save button"/>
         </form>
     </body>
 </html>
