@@ -3,3 +3,8 @@
                         <input type="hidden" name="id" value="<?php echo $item['sv_id']; ?>"/>
                         <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
                     </form>
+
+<form method="get" action="student-profile-edit.php">
+                            <input onclick="window.location = 'student-profile-edit.php?id=<?php echo $item['user_id']; ?>'" type="button" value="sửa thông tin cá nhân" class="fix button"/>
+                            <input type="hidden" name="id" value="<?php echo $item['user_id']; ?>"/>
+                        </form>
