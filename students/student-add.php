@@ -138,8 +138,8 @@ disconnect_db();
             <a href="student-list.php"><i class="fa-solid fa-arrow-left-long"></i></a>
             <h1>Thêm Sinh viên </h1>
         </div>
-        <form method="post" action="student-add.php" class="add-table-wrapper">
-            <table class="add-table">
+        <form method="post" action="student-add.php" class="table-wrapper">
+            <table class="verticle-table">
                  <tr>
                     <th>User Id</th>
                     <td>
@@ -198,7 +198,6 @@ disconnect_db();
                     </td>
                 </tr>
                 <tr>
-<<<<<<< HEAD
                     <th>CMND</th>
                     <td>
                         <input type="text" name="cmnd" value=""/>
@@ -209,9 +208,6 @@ disconnect_db();
                 </tr>
                 <tr>
                     <th>Lớp</th>
-=======
-                    <td>Lớp</td>
->>>>>>> 6db58edd3c3abdb8212e108a1ba69dc9afd53ad1
                     <td>
                         <input type="text" name="groupid" value=""/>
                     </td>
@@ -220,17 +216,6 @@ disconnect_db();
                     <th>Chuyên Ngành</th>
                     <td>
                         <input type="text" name="major" value=""/>
-                    </td>
-                </tr>
-                    <td>CMND</td>
-                    <td>
-                        <input type="text" name="cmnd" value=""/>
-                                                 <?php if (!empty($errors['CMND']))
-                        { echo $errors['CMND'];}
-                        if (!empty($errors['CMND1']))
-                        {
-                            echo $errors['CMND1'];
-                        }?>
                     </td>
                 </tr>
                 <tr>
@@ -258,23 +243,12 @@ disconnect_db();
 
                     </td>
                 </tr>
-<<<<<<< HEAD
                 <tr>
                     <th>Permission</th>
                     <td>
                         <input type="number" name="permission" value=""/>
                     </td>
                 </tr>                                
-                <!-- <tr>
-=======
-                                
-                <tr>
->>>>>>> 6db58edd3c3abdb8212e108a1ba69dc9afd53ad1
-                    <td></td>
-                    <td>
-                        <input type="submit" name="add_student" value="Lưu"/>
-                    </td>
-                </tr> -->
             </table>
             <input type="submit" name="add_student" value="Lưu" class="save button"/>
         </form>
