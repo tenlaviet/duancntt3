@@ -75,93 +75,99 @@ disconnect_db();
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sửa sinh viên</title>
+        <title>Sửa Sinh Viên</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="../img/Logo-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
+        <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>Sửa sinh vien </h1>
-        <a href="student-list.php">Trở về</a> <br/> <br/>
-        <form method="post" action="student-edit.php?id=<?php echo $data['MaSv']; ?>">
-            <table width="50%" border="1" cellspacing="0" cellpadding="10">             
-                <tr>
-                    <td>Mã sinh viên</td>
-                    <td>
-                        <input type="text" name="masv" value="<?php echo $data['MaSv']?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>password</td>
-                    <td>
-                        <input type="text" name="password" value="<?php echo $data['password']?>"/>
-                    </td>
-                </tr>                
+        <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
+        <div class="wrapper">
+            <h1>Sửa Sinh Viên </h1>
+            <form method="post" action="student-edit.php?id=<?php echo $data['MaSv']; ?>" class="table-wrapper">
+                <table class="verticle-table">             
+                    <tr>
+                        <th>Mã sinh viên</th>
+                        <td>
+                            <input type="text" name="masv" value="<?php echo $data['MaSv']?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>password</th>
+                        <td>
+                            <input type="text" name="password" value="<?php echo $data['password']?>"/>
+                        </td>
+                    </tr>                
 
-                <tr>
-                    <td>Họ tên</td>
-                    <td>
-                        <input type="text" name="name" value="<?php echo $data['HoTen'] ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Giới tính</td>
-                    <td>
-                        <select name="sex">
-                            <option value="Nam">Nam</option>
-                            <option value="Nữ">Nữ</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ngày sinh</td>
-                    <td>
-                        <input type="date" name="birthday" value="<?php echo $data['NgaySinh']?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>CMND</td>
-                    <td>
-                        <input type="text" name="cmnd" value="<?php echo $data['CMND']?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lớp</td>
-                    <td>
-                        <input type="text" name="groupid" value="<?php echo $data['MaLop']?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Chuyên ngành</td>
-                    <td>
-                        <input type="text" name="major" value="<?php echo $data['MaCn']?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>email</td>
-                    <td>
-                        <input type="text" name="email" value="<?php echo $data['email']?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>SDT</td>
-                    <td>
-                        <input type="number" name="sdt" value="<?php echo $data['SDT']?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>permission</td>
-                    <td>
-                        <input type="number" name="permission" value="<?php echo $data['permission']; ?>"/>
-                    </td>
-                </tr> 
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="hidden" name="userid" value="<?php echo $data['id']; ?>"/>
-                        <input type="submit" name="edit_student" value="Lưu"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                    <tr>
+                        <th>Họ tên</th>
+                        <td>
+                            <input type="text" name="name" value="<?php echo $data['HoTen'] ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Giới tính</th>
+                        <td>
+                            <select name="sex">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ngày sinh</th>
+                        <td>
+                            <input type="date" name="birthday" value="<?php echo $data['NgaySinh']?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>CMND</th>
+                        <td>
+                            <input type="text" name="cmnd" value="<?php echo $data['CMND']?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Lớp</th>
+                        <td>
+                            <input type="text" name="groupid" value="<?php echo $data['MaLop']?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Chuyên ngành</th>
+                        <td>
+                            <input type="text" name="major" value="<?php echo $data['MaCn']?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>email</th>
+                        <td>
+                            <input type="text" name="email" value="<?php echo $data['email']?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>SDT</th>
+                        <td>
+                            <input type="number" name="sdt" value="<?php echo $data['SDT']?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>permission</th>
+                        <td>
+                            <input type="number" name="permission" value="<?php echo $data['permission']; ?>"/>
+                        </td>
+                    </tr> 
+                </table>
+                <input type="hidden" name="userid" value="<?php echo $data['id']; ?>"/>
+                <input type="submit" name="edit_student" value="Lưu" class="save button"/>
+            </form>
+        </div>
     </body>
 </html>
