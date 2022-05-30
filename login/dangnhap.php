@@ -48,7 +48,7 @@ session_start();
 
                 if ($_SESSION["permission"]=='3')
                 {
-                header('Location: ../trang_sinhvien.php');
+                header('Location: ../students/student-profile.php');
             	}
                 if ($_SESSION["permission"]=='1')
                 {

@@ -36,7 +36,7 @@ header('Location: login/dangnhap.php');
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\student-sidebar.php';?>
         <div class="wrapper">
             <h1>Thông Tin Cá Nhân</h1>
             <div class="table-wrapper">
