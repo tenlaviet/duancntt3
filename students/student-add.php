@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '../libs/students.php';
 require_once("../libs/connection.php");
 // Nếu người dùng submit form
@@ -253,5 +253,6 @@ disconnect_db();
                 <input type="submit" name="add_student" value="Lưu" class="save button"/>
             </form>
         </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>
