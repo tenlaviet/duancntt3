@@ -9,19 +9,6 @@ body {
     margin: 0 10px 0 285px;
 }
 
-.header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fa-arrow-left-long {
-    margin-left: -575px;
-    font-size: 22px;
-    text-decoration: none;
-    color: rgb(208, 40, 40);
-}
-
 h1 {
     display: flex;
     justify-content: center;

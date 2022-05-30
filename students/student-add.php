@@ -129,128 +129,129 @@ disconnect_db();
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
         <link rel="icon" type="image/png" href="../img/Logo-32x32.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
         <link href="../styles/header.css" rel="stylesheet" type="text/css" />
         <link href="../styles/table.css" rel="stylesheet" type="text/css" />
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="header">
-            <a href="student-list.php"><i class="fa-solid fa-arrow-left-long"></i></a>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
+        <div class="wrapper">
             <h1>Thêm Sinh viên </h1>
+            <form method="post" action="student-add.php" class="table-wrapper">
+                <table class="verticle-table">
+                    <tr>
+                        <th>User Id</th>
+                        <td>
+                            <input type="text" name="userid" value=""/>
+
+                            <?php if (!empty($errors['user_id']))
+                            { echo $errors['user_id'];}
+                            if (!empty($errors['user_id1']))
+                            {
+                                echo $errors['user_id1'];
+                            }
+                            ?>
+                        </td>
+                    </tr>                
+                    <tr>
+                        <th>Mã Sinh Viên</th>
+                        <td>
+                            <input type="text" name="masv" value=""/>
+
+                            <?php if (!empty($errors['MaSv']))
+                            { echo $errors['MaSv'];}
+                            if (!empty($errors['MaSv1']))
+                            {
+                                echo $errors['MaSv1'];
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <td>
+                            <input type="text" name="password" value=""/>
+                        </td>
+                    </tr>                
+
+                    <tr>
+                        <th>Họ Tên</th>
+                        <td>
+                            <input type="text" name="name" value=""/>
+                            <?php if (!empty($errors['HoTen'])) echo $errors['HoTen']; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Giới Tính</th>
+                        <td>
+                            <select name="sex">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ"<?php if (!empty($data['GioiTinh']) && $data['GioiTinh'] == 'Nữ') echo 'selected'; ?>>Nữ</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ngày Sinh</th>
+                        <td>
+                            <input type="date" name="birthday" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>CMND</th>
+                        <td>
+                            <input type="text" name="cmnd" value=""/>
+                            <?php if (!empty($errors['CMND'])) echo $errors['CMND']; ?>
+                            <?php if (!empty($errors['MaSv3'])) echo $errors['MaSv3']; ?>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Lớp</th>
+                        <td>
+                            <input type="text" name="groupid" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Chuyên Ngành</th>
+                        <td>
+                            <input type="text" name="major" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>
+                            <input type="text" name="email" value=""/>
+                                                    <?php if (!empty($errors['email']))
+                            { echo $errors['email'];}
+                            if (!empty($errors['email1']))
+                            {
+                                echo $errors['email1'];
+                            }?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>SDT</th>
+                        <td>
+                            <input type="number" name="sdt" value=""/>
+                                                    <?php if (!empty($errors['SDT']))
+                            { echo $errors['SDT'];}
+                            if (!empty($errors['SDT1']))
+                            {
+                                echo $errors['SDT1'];
+                            }?>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Permission</th>
+                        <td>
+                            <input type="number" name="permission" value=""/>
+                        </td>
+                    </tr>                                
+                </table>
+                <input type="submit" name="add_student" value="Lưu" class="save button"/>
+            </form>
         </div>
-        <form method="post" action="student-add.php" class="table-wrapper">
-            <table class="verticle-table">
-                 <tr>
-                    <th>User Id</th>
-                    <td>
-                        <input type="text" name="userid" value=""/>
-
-                        <?php if (!empty($errors['user_id']))
-                        { echo $errors['user_id'];}
-                        if (!empty($errors['user_id1']))
-                        {
-                            echo $errors['user_id1'];
-                        }
-                        ?>
-                    </td>
-                </tr>                
-                <tr>
-                    <th>Mã Sinh Viên</th>
-                    <td>
-                        <input type="text" name="masv" value=""/>
-
-                        <?php if (!empty($errors['MaSv']))
-                        { echo $errors['MaSv'];}
-                        if (!empty($errors['MaSv1']))
-                        {
-                            echo $errors['MaSv1'];
-                        }
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Password</th>
-                    <td>
-                        <input type="text" name="password" value=""/>
-                    </td>
-                </tr>                
-
-                <tr>
-                    <th>Họ Tên</th>
-                    <td>
-                        <input type="text" name="name" value=""/>
-                        <?php if (!empty($errors['HoTen'])) echo $errors['HoTen']; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Giới Tính</th>
-                    <td>
-                        <select name="sex">
-                            <option value="Nam">Nam</option>
-                            <option value="Nữ"<?php if (!empty($data['GioiTinh']) && $data['GioiTinh'] == 'Nữ') echo 'selected'; ?>>Nữ</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Ngày Sinh</th>
-                    <td>
-                        <input type="date" name="birthday" value=""/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>CMND</th>
-                    <td>
-                        <input type="text" name="cmnd" value=""/>
-			             <?php if (!empty($errors['CMND'])) echo $errors['CMND']; ?>
-                         <?php if (!empty($errors['MaSv3'])) echo $errors['MaSv3']; ?>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th>Lớp</th>
-                    <td>
-                        <input type="text" name="groupid" value=""/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Chuyên Ngành</th>
-                    <td>
-                        <input type="text" name="major" value=""/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td>
-                        <input type="text" name="email" value=""/>
-                                                <?php if (!empty($errors['email']))
-                        { echo $errors['email'];}
-                        if (!empty($errors['email1']))
-                        {
-                            echo $errors['email1'];
-                        }?>
-                    </td>
-                </tr>
-                <tr>
-                    <th>SDT</th>
-                    <td>
-                        <input type="number" name="sdt" value=""/>
-                                                <?php if (!empty($errors['SDT']))
-                        { echo $errors['SDT'];}
-                        if (!empty($errors['SDT1']))
-                        {
-                            echo $errors['SDT1'];
-                        }?>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th>Permission</th>
-                    <td>
-                        <input type="number" name="permission" value=""/>
-                    </td>
-                </tr>                                
-            </table>
-            <input type="submit" name="add_student" value="Lưu" class="save button"/>
-        </form>
     </body>
 </html>
