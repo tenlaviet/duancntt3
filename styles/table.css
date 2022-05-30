@@ -1,3 +1,4 @@
+/* List Table */
 .content-table{
     border-collapse: collapse;
     font-size: 0.9em;
@@ -58,4 +59,78 @@
 .list{
     background-color: #ffba42;
     width: 100px;
+}
+
+
+/* Add student */
+.table-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.verticle-table{
+    border-collapse: collapse;
+    font-size: 1.2em;
+    min-width: 800px;
+    margin: 25px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.verticle-table th {
+    text-align: left;
+    color: white;
+    background-color: #579CDD;
+}
+
+.verticle-table th,
+.verticle-table td {
+    padding: 15px;
+}
+
+.verticle-table td {
+    align-items: center;
+    margin-left: 100px;
+}
+
+.verticle-table input, 
+.verticle-table select {
+    width: 100%;
+    height: 44px;
+    font-size: 1.2em;
+    outline: none;
+}
+
+.save {
+    background-color: #579CDD;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px;
+    width: 100px;
+    margin-bottom: 50px;
+}
+
+/* Profile */
+.profile-table{
+    border-collapse: collapse;
+    font-size: 1.3em;
+    min-width: 400px;
+    margin: 25px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-table th {
+    text-align: left;
+    color: white;
+    background-color: #579CDD;
+}
+
+.profile-table th,
+.profile-table td {
+    padding: 18px;
 }

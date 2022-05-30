@@ -28,7 +28,7 @@ disconnect_db();
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
         <div class="wrapper">
             <h1>Danh sách sinh viên</h1>
                 <div align="center">
@@ -91,5 +91,6 @@ disconnect_db();
                 <?php } ?>
             </table>
         </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>

@@ -14,6 +14,13 @@ body {
     text-transform: bold;
 }
 
+.user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .sidebar {
     position: fixed;
     background-color: #579CDD;
@@ -43,11 +50,16 @@ body {
     margin: 0 0 10px 0 ;
 }
 
+.navlist {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 .sidebar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -66,6 +78,7 @@ body {
     font-weight: 400px;
     display: block;
     border-left: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
 }
 
 .sidebar a:hover {
@@ -73,6 +86,49 @@ body {
     background: #ffffffe8;
     border-left-color: red;
     box-shadow: 0 5px 10px rgba(149, 31, 31, 0.651);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-dropdown{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fa-angle-down{
+    margin-right: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar ul .dropdown.showSubMenu .fa-angle-down{
+    transform: rotate(-180deg);
+}
+
+.sidebar ul .dropdown .sub-menu {
+    padding: 6px 6px 14px 35px;
+    background: #7493b0;
+    white-space: nowrap;
+    display: none;
+}
+
+.sidebar ul .dropdown.showSubMenu .sub-menu {
+    display: block;
+}
+
+.sidebar ul .dropdown .sub-menu li{ 
+    line-height: 60px;
+}
+
+.sidebar ul .dropdown .sub-menu a {
+    color: rgba(255, 255, 255, 0.782);
+    font-size: 18px;
+}
+
+.sidebar ul .dropdown .sub-menu a:hover {
+    color: white;
+    background: #7493b0;
+    border-left-color: #7493b0;
+    box-shadow: none;
 }
 
 .btn_logout {

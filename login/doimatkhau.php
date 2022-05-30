@@ -1,6 +1,15 @@
 	<html>
 	<head>
 		<title>Form đăng ký thành viên</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="../img/Logo-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
+        <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<?php
@@ -23,16 +32,16 @@
     // Validate thong tin
     $errors = array();
     if ($mkht != $data['password']){
-        $errors['khongtrung'] = 'khong giong mat khau hien tai';
+        $errors['khongtrung'] = 'không giống mật khẩu hiện tại';
     } 
  
     if (empty($mkm)){
-        $errors['mkm'] = 'dien thieu thong tin';
+        $errors['mkm'] = 'điền thiếu thông tin';
     }
      
 
     if ($nl != $mkm){
-    $errors['khongtrung2'] = 'ban nhap sai';
+    $errors['khongtrung2'] = 'bạn nhập sai';
     } 
 
      
@@ -47,45 +56,42 @@
     }
 }
 	?>
-	<form action="doimatkhau.php" method="post">
-		<table>
-			<tr>
-				<td colspan="2">Form doi mat khau</td>
-			</tr>
-			<tr>
-				<td>Mật khẩu hiện tại</td>
-				<td>
-					<input type="password" id="mkht" name="mkht" value="">
-					<?php if (!empty($errors['mkht']))
-					{ 
-						echo $errors['mkht'];
-					}?>
-					<?php if (!empty($errors['khongtrung'])) echo $errors['khongtrung'];?>
-				</td>
-
-			</tr>	
-			<tr>
-				<td>Mật khẩu mới</td>
-				<td><input type="password" id="mkm" name="mkm" value="">
-				<?php if (!empty($errors['mkm'])) echo $errors['mkm'];?>
-				</td>
-			</tr>
-			<tr>
-				<td>Nhập lại mật khẩu mới</td>
-				<td><input type="password" id="nl" name="nl" value="">
-				<?php if (!empty($errors['khongtrung2']))
-					{ 
-						echo $errors['khongtrung2'];
-					}?>
-				</td>
-			</tr>
-
-			<tr>
-				<td colspan="2" align="center"><input type="submit" name="luu" value="luu thay doi"></td>
-			</tr>
-
-		</table>
-
-	</form>
+		<?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
+		<div class="wrapper">
+			<form action="doimatkhau.php" method="post" class="table-wrapper">
+				<h1>Đổi Mật Khẩu</h1>
+				<table class="verticle-table">
+					<tr>
+						<th>Mật khẩu hiện tại</th>
+						<td>
+							<input type="password" id="mkht" name="mkht" value="">
+							<?php if (!empty($errors['mkht']))
+						{ 
+							echo $errors['mkht'];
+						}?>
+						<?php if (!empty($errors['khongtrung'])) echo $errors['khongtrung'];?>
+					</td>
+					
+				</tr>	
+				<tr>
+					<th>Mật khẩu mới</th>
+					<td><input type="password" id="mkm" name="mkm" value="">
+					<?php if (!empty($errors['mkm'])) echo $errors['mkm'];?>
+					</td>
+				</tr>
+				<tr>
+					<th>Nhập lại mật khẩu mới</th>
+					<td><input type="password" id="nl" name="nl" value="">
+					<?php if (!empty($errors['khongtrung2']))
+						{ 
+							echo $errors['khongtrung2'];
+						}?>
+					</td>
+				</tr>		
+				</table>
+				<input type="submit" name="luu" value="Lưu" class="save button"></td>
+			</form>
+		</div>
+		<script src="../scripts/dropdown.js"></script>
 	</body>
-	</html>
+</html>

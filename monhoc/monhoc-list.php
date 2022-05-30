@@ -9,7 +9,7 @@ disconnect_db();
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Danh sách môn học</title>
+        <title>Danh Sách Môn Học</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,9 +23,9 @@ disconnect_db();
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
         <div class="wrapper">
-            <h1>Danh sách môn học</h1>
+            <h1>Danh Sách Môn Học</h1>
                 <div align="center">
                 <form action="monhoc-list.php" method="get" class="search-box">
                     <input type="text" name="search" class="search-input" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"/>
@@ -67,5 +67,6 @@ disconnect_db();
                 <?php } ?>
             </table>
         </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>
