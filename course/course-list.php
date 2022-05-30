@@ -32,7 +32,7 @@ disconnect_db();
                     <input type="submit" name="ok" value="search" class="search-btn" />
                 </form>
             </div>
-            <a href="course-add.php"class="student-add"><i class="fa-solid fa-circle-plus"></i>Thêm sinh viên</a>
+            <a href="course-add.php"class="student-add"><i class="fa-solid fa-circle-plus"></i>Thêm Khóa Học</a>
             <table class="content-table">
                 <thead>
                     <tr>

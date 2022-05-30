@@ -1,5 +1,5 @@
 <?php
- 
+ session_start();
 require '../libs/students.php';
 require_once("../libs/connection.php");
  
@@ -40,27 +40,33 @@ disconnect_db();
     <head>
         <title>Sửa môn học</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="../img/Logo-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
+        <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>Thêm môn học</h1>
-        <a href="monhoc-list.php">Trở về</a> <br/> <br/>
-        <form method="post" action="monhoc-edit.php?id=<?php echo $data['MaMon']; ?>">
-            <table width="50%" border="1" cellspacing="0" cellpadding="10">
-                <tr>
-                    <td>Tên môn</td>
-                    <td>
-                        <input type="text" name="name" value="<?php echo $data['TenMon']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="hidden" name="id" value="<?php echo $data['MaMon']; ?>"/>
-                        <input type="submit" name="edit_monhoc" value="Lưu"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
+        <div class="wrapper">
+            <h1>Thêm môn học</h1>
+            <form method="post" action="monhoc-edit.php?id=<?php echo $data['MaMon']; ?>" class="table-wrapper">
+                <table class="verticle-table">
+                    <tr>
+                        <th>Tên môn</th>
+                        <td>
+                            <input type="text" name="name" value="<?php echo $data['TenMon']; ?>"/>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" name="id" value="<?php echo $data['MaMon']; ?>"/>
+                <input type="submit" name="edit_monhoc" value="Lưu" class="save button"/>
+            </form>
+        </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>

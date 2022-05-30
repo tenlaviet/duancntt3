@@ -9,19 +9,6 @@ body {
     margin: 0 10px 0 285px;
 }
 
-.header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fa-arrow-left-long {
-    margin-left: -575px;
-    font-size: 22px;
-    text-decoration: none;
-    color: rgb(208, 40, 40);
-}
-
 h1 {
     display: flex;
     justify-content: center;
@@ -74,7 +61,19 @@ input:focus::placeholder {
     text-decoration: none;
     font-weight: bold;
     font-size: 16px;
-    margin: 20px 0 10px 0;
+    margin: 20px 0 20px 0;
+    cursor: pointer;
+}
+
+.student-add input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #579CDD;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .fa-circle-plus {

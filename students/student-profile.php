@@ -84,10 +84,16 @@ header('Location: ../login/dangnhap.php');
                     </tr>
                     <?php } ?>
                 </table>
+                <form method="get" action="student-profile-edit.php">
+                    <input onclick="window.location = 'student-profile-edit.php?id=<?php echo $item['user_id']; ?>'" type="button" value="Sửa Thông Tin Cá Nhân" class="fix-profile button"/>
+                    <input type="hidden" name="id" value="<?php echo $item['user_id']; ?>"/>
+                </form>
             </div>
         </div>
 
 
-        <script src="../scripts/dropdown.js"></script>
+
+     
+
     </body>
 </html>
