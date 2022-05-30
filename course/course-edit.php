@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '../libs/students.php';
 require_once("../libs/connection.php");
  
@@ -75,64 +75,71 @@ disconnect_db();
         <title>Sửa khóa học</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="../img/Logo-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
+        <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>Thêm khóa học </h1>
-        <a href="course-list.php">Trở về</a> <br/> <br/>
-        <form method="post" action="course-edit.php?id=<?php echo $data['id']; ?>">
-            <table width="50%" border="1" cellspacing="0" cellpadding="10">
-                <tr>
-                    <td>Mã Môn</td>
-                    <td>
-                        <input type="text" name="mamon" value="<?php echo $data['MaMon']; ?>"/>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
+        <div class="wrapper">
+            <h1>Sửa khóa học</h1>
+            <form method="post" action="course-edit.php?id=<?php echo $data['id']; ?>" class="table-wrapper">
+                <table class="verticle-table">
+                    <tr>
+                        <th>Mã Môn</th>
+                        <td>
+                            <input type="text" name="mamon" value="<?php echo $data['MaMon']; ?>"/>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>Học kì</td>
-                    <td>
-                    <input type="text" name="hocki" value="<?php echo $data['HocKi']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Phòng học</td>
-                    <td>
-                        <input type="text" name="phonghoc" value="<?php echo $data['PhongHoc']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mã giáo viên</td>
-                    <td>
-                        <input type="text" name="magv" value="<?php echo $data['MaGv']; ?>"/>
-            
-                    </td>
-                </tr>
-                <tr>
-                    <td>Thứ</td>
-                    <td>
-                        <input type="text" name="thu" value="<?php echo $data['Thu']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ca học</td>
-                    <td>
-                        <input type="text" name="ca" value="<?php echo $data['Ca']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ngày Thi</td>
-                    <td>
-                        <input type="date" name="ngaythi" value="<?php echo $data['NgayThi']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="hidden" name="id" value="<?php echo $data['id']; ?>"/>
-                        <input type="submit" name="edit_course" value="Lưu"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Học kì</th>
+                        <td>
+                        <input type="text" name="hocki" value="<?php echo $data['HocKi']; ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Phòng học</th>
+                        <td>
+                            <input type="text" name="phonghoc" value="<?php echo $data['PhongHoc']; ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Mã giáo viên</th>
+                        <td>
+                            <input type="text" name="magv" value="<?php echo $data['MaGv']; ?>"/>
+                
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Thứ</th>
+                        <td>
+                            <input type="text" name="thu" value="<?php echo $data['Thu']; ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ca học</th>
+                        <td>
+                            <input type="text" name="ca" value="<?php echo $data['Ca']; ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ngày Thi</th>
+                        <td>
+                            <input type="date" name="ngaythi" value="<?php echo $data['NgayThi']; ?>"/>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" name="id" value="<?php echo $data['id']; ?>"/>
+                <input type="submit" name="edit_course" value="Lưu" class="save button"/>
+            </form>
+        </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>

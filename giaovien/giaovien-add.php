@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '../libs/students.php';
 require_once("../libs/connection.php");
 // Nếu người dùng submit form
@@ -130,130 +130,135 @@ disconnect_db();
         <title>thêm giáo viên</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="../img/Logo-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
+        <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>thêm giáo viên </h1>
-        <a href="giaovien-list.php">Trở về</a> <br/> <br/>
-        <form method="post" action="giaovien-add.php">
-            <table width="50%" border="1" cellspacing="0" cellpadding="10">
-                <tr>
-                    <td>User ID</td>
-                    <td>
-                        <input type="text" name="userid" value=""/>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
+        <div class="wrapper">
+            <h1>Thêm Giáo Viên </h1>
+            <form method="post" action="giaovien-add.php" class="table-wrapper">
+                <table class="verticle-table">
+                    <tr>
+                        <th>User ID</th>
+                        <td>
+                            <input type="text" name="userid" value=""/>
 
-                        <?php if (!empty($errors['user_id']))
-                        { echo $errors['user_id'];}
-                        if (!empty($errors['user_id1']))
-                        {
-                            echo $errors['user_id1'];
-                        }
-                        ?>
-                    </td>
-                </tr>                
-                <tr>
-                    <td>Mã giáo viên</td>
-                    <td>
-                        <input type="text" name="MaGv" value=""/>
+                            <?php if (!empty($errors['user_id']))
+                            { echo $errors['user_id'];}
+                            if (!empty($errors['user_id1']))
+                            {
+                                echo $errors['user_id1'];
+                            }
+                            ?>
+                        </td>
+                    </tr>                
+                    <tr>
+                        <th>Mã giáo viên</th>
+                        <td>
+                            <input type="text" name="MaGv" value=""/>
 
-                        <?php if (!empty($errors['MaGv']))
-                        { echo $errors['MaGv'];}
-                        if (!empty($errors['MaGv1']))
-                        {
-                            echo $errors['MaGv1'];
-                        }
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>password</td>
-                    <td>
-                        <input type="text" name="password" value=""/>
-                        <?php if (!empty($errors['password'])) echo $errors['password'];?>
-                    </td>
-                </tr> 
-                <tr>
-                    <td>Họ và Tên</td>
-                    <td>
-                        <input type="text" name="name" value=""/>
-                        <?php if (!empty($errors['HoTen'])) echo $errors['HoTen']; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Giới Tính</td>
-                    <td>
-                        <select name="sex">
-                            <option value="Nam">Nam</option>
-                            <option value="Nữ"<?php if (!empty($data['GioiTinh']) && $data['GioiTinh'] == 'Nữ') echo 'selected'; ?>>Nữ</option>
-                        </select>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ngày sinh</td>
-                    <td>
-                        <input type="date" name="birthday" value=""/>
-                        <?php if (!empty($errors['NgaySinh'])) echo $errors['NgaySinh']; ?>
-                    </td>
-                </tr>
+                            <?php if (!empty($errors['MaGv']))
+                            { echo $errors['MaGv'];}
+                            if (!empty($errors['MaGv1']))
+                            {
+                                echo $errors['MaGv1'];
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>password</th>
+                        <td>
+                            <input type="text" name="password" value=""/>
+                            <?php if (!empty($errors['password'])) echo $errors['password'];?>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th>Họ và Tên</th>
+                        <td>
+                            <input type="text" name="name" value=""/>
+                            <?php if (!empty($errors['HoTen'])) echo $errors['HoTen']; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Giới Tính</th>
+                        <td>
+                            <select name="sex">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ"<?php if (!empty($data['GioiTinh']) && $data['GioiTinh'] == 'Nữ') echo 'selected'; ?>>Nữ</option>
+                            </select>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ngày sinh</th>
+                        <td>
+                            <input type="date" name="birthday" value=""/>
+                            <?php if (!empty($errors['NgaySinh'])) echo $errors['NgaySinh']; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Chủ nhiệm</th>
+                        <td>
+                            <input type="text" name="cn" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Chuyên ngành</th>
+                        <td>
+                            <input type="text" name="major" value=""/>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>CMND</th>
+                        <td>
+                            <input type="text" name="cmnd" value=""/>
+                            <?php if (!empty($errors['CMND']))
+                                { echo $errors['CMND'];}
+                                if (!empty($errors['CMND1']))
+                                {
+                                echo $errors['CMND1'];
+                            }?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>email</th>
+                        <td>
+                            <input type="text" name="email" value=""/>
+                            <?php if (!empty($errors['email']))
+                                { echo $errors['email'];}
+                                if (!empty($errors['email1']))
+                                {
+                                    echo $errors['email1'];
+                            }?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>SDT</th>
+                        <td>
+                            <input type="number" name="sdt" value=""/>
+                            <?php if (!empty($errors['SDT']))
+                                { echo $errors['SDT'];}
+                                if (!empty($errors['SDT1']))
+                                {
+                                    echo $errors['SDT1'];
+                            }?>
 
-                <tr>
-                    <td>Chủ nhiệm</td>
-                    <td>
-                        <input type="text" name="cn" value=""/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Chuyên ngành</td>
-                    <td>
-                        <input type="text" name="major" value=""/>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>CMND</td>
-                    <td>
-                        <input type="text" name="cmnd" value=""/>
-                                                 <?php if (!empty($errors['CMND']))
-                        { echo $errors['CMND'];}
-                        if (!empty($errors['CMND1']))
-                        {
-                            echo $errors['CMND1'];
-                        }?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>email</td>
-                    <td>
-                        <input type="text" name="email" value=""/>
-                                                <?php if (!empty($errors['email']))
-                        { echo $errors['email'];}
-                        if (!empty($errors['email1']))
-                        {
-                            echo $errors['email1'];
-                        }?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>SDT</td>
-                    <td>
-                        <input type="number" name="sdt" value=""/>
-                                                <?php if (!empty($errors['SDT']))
-                        { echo $errors['SDT'];}
-                        if (!empty($errors['SDT1']))
-                        {
-                            echo $errors['SDT1'];
-                        }?>
-
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit" name="add_giaovien" value="Lưu"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" name="add_giaovien" value="Lưu" class="save button"/>
+            </form>
+        </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>
