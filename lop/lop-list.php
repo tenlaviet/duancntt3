@@ -8,7 +8,7 @@ disconnect_db();
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Danh sách lớp</title>
+        <title>Danh Sách Lớp</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +24,7 @@ disconnect_db();
     <body>
         <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
         <div class="wrapper">
-            <h1>Danh sách lớp</h1>
+            <h1>Danh Sách Lớp</h1>
                 <div align="center">
                 <form action="lop-list.php" method="get" class="search-box">
                     <input type="text" name="search" class="search-input" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"/>
@@ -70,5 +70,6 @@ disconnect_db();
                 <?php } ?>
             </table>
         </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>
