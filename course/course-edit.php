@@ -1,10 +1,7 @@
 <?php
- 
+
 require '../libs/students.php';
-<<<<<<< HEAD
-=======
 require_once("../libs/connection.php");
->>>>>>> 9001369c661014b453e4639b5fd2818d183ea217
  
 // Lấy thông tin hiển thị lên để người dùng sửa
 $id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -84,7 +81,6 @@ disconnect_db();
         <a href="course-list.php">Trở về</a> <br/> <br/>
         <form method="post" action="course-edit.php?id=<?php echo $data['id']; ?>">
             <table width="50%" border="1" cellspacing="0" cellpadding="10">
-                
                 <tr>
                     <td>Mã Môn</td>
                     <td>
