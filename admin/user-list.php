@@ -40,6 +40,7 @@ disconnect_db();
                         <th>CMND</th>
                         <th>SDT</th>
                         <th>Email</th>
+                        <th>Permission</th>
                     </tr>
                 </thead>
                 <?php
@@ -61,8 +62,7 @@ disconnect_db();
                     <td><?php echo $item['SDT']; ?></td>
                     <td><?php echo $item['email']; ?></td>
                     <td><?php echo $item['permission']; ?></td>
-                    <td>
-                    </td>
+
                 </tr>
                 <?php } ?>
             </table>

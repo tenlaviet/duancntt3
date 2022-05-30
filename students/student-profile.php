@@ -17,7 +17,7 @@ if(isset($_SESSION['username']))
 <?php
 if(isset($_GET['logout'])) {
 session_destroy();
-header('Location: login/dangnhap.php');
+header('Location: ../login/dangnhap.php');
 }
 ?>
  
@@ -53,7 +53,7 @@ header('Location: login/dangnhap.php');
                 <td>CMND</td>
                 <td>email</td>
                 <td>SDT</td>
-                <td>Options</td>
+
             </tr>
 
             <?php
@@ -72,8 +72,7 @@ header('Location: login/dangnhap.php');
                 <td><?php echo $item['CMND']; ?></td>
                 <td><?php echo $item['email']; ?></td>
                 <td><?php echo $item['SDT']; ?></td>
-                <td>
-                </td>
+
             </tr>
             <?php } ?>
                                                 <form method="get" action="student-profile-edit.php">
