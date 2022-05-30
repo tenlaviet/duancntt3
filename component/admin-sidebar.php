@@ -47,7 +47,7 @@ header('Location: ../login/dangnhap.php');
             </ul>
         </div>
         <div>
-            <form method="get" action="student-list.php">
+            <form method="get" action="../students/student-list.php">
                 <input onclick="return confirm('Bạn có chắc muốn logout không?');" type="submit" name="logout" class="btn_logout" value="Logout" />
             </form>
         </div>
