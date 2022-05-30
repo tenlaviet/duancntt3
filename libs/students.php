@@ -543,7 +543,7 @@ function delete_lop($lop_code)
     
     return $query;
 }
-function edit_lop($lop_code, $lop_cn, $lop_name)
+function edit_lop($lop_code, $lop_code1, $lop_cn, $lop_name)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
@@ -554,13 +554,14 @@ function edit_lop($lop_code, $lop_cn, $lop_name)
     // Chống SQL Injection
     $lop_name       = addslashes($lop_name);
     $lop_code = addslashes($lop_code);
+    $lop_code1 = addslashes($lop_code1);
     $lop_cn = addslashes($lop_cn);
     
     
     // Câu truy sửa
     
     $sql = " 
-    UPDATE `lop` SET `MaCn`='$lop_cn',`KhoaDaoTao`='$lop_name' WHERE `MaLop` ='$lop_code'
+    UPDATE `lop` SET `MaLop`='$lop_code',`MaCn`='$lop_cn',`KhoaDaoTao`='$lop_name' WHERE `MaLop` = '$lop_code1';
     ";
     
     // Thực hiện câu truy vấn
