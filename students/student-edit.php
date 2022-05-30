@@ -89,7 +89,7 @@ disconnect_db();
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
         <div class="wrapper">
             <h1>Sửa Sinh Viên </h1>
             <form method="post" action="student-edit.php?id=<?php echo $data['MaSv']; ?>" class="table-wrapper">
@@ -169,5 +169,6 @@ disconnect_db();
                 <input type="submit" name="edit_student" value="Lưu" class="save button"/>
             </form>
         </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>

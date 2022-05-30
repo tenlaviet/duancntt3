@@ -56,7 +56,7 @@
     }
 }
 	?>
-		<?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
+		<?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
 		<div class="wrapper">
 			<form action="doimatkhau.php" method="post" class="table-wrapper">
 				<h1>Đổi Mật Khẩu</h1>

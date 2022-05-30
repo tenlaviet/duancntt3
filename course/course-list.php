@@ -23,7 +23,7 @@ disconnect_db();
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <?php include 'C:\xampp\htdocs\duancntt3\component\sidebar.php';?>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
         <div class="wrapper">
             <h1>Danh Sách Khóa Học</h1>
                 <div align="center">
