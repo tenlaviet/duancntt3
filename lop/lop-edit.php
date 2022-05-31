@@ -1,5 +1,5 @@
 <?php
- 
+session_start();
 require '../libs/students.php';
 require_once("../libs/connection.php"); 
 // Lấy thông tin hiển thị lên để người dùng sửa
@@ -53,33 +53,39 @@ disconnect_db();
     <head>
         <title>Sửa lớp</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="../img/Logo-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="../img/Logo-16x16.png" sizes="16x16" />
+        <link href="../styles/sidebar.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/header.css" rel="stylesheet" type="text/css" />
+        <link href="../styles/table.css" rel="stylesheet" type="text/css" />
+        <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>Sửa lớp</h1>
-        <a href="lop-list.php">Trở về</a> <br/> <br/>
-        <form method="post" action="lop-edit.php?id=<?php echo $data['MaLop']; ?>">
-            <table width="50%" border="1" cellspacing="0" cellpadding="10">
-                <tr>
-                    <td>Mã chuyên ngành</td>
-                    <td>
-                        <input type="text" name="macn" value="<?php echo $data['MaCn']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Khóa đào tạo</td>
-                    <td>
-                        <input type="text" name="name" value="<?php echo $data['KhoaDaoTao']; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="hidden" name="id" value="<?php echo $data['MaLop']; ?>"/>
-                        <input type="submit" name="edit_lop" value="Lưu"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
+        <div class="wrapper">
+            <h1>Sửa lớp</h1>
+            <form method="post" action="lop-edit.php?id=<?php echo $data['MaLop']; ?>" class="table-wrapper">
+                <table class="verticle-table">
+                    <tr>
+                        <th>Mã chuyên ngành</th>
+                        <td>
+                            <input type="text" name="macn" value="<?php echo $data['MaCn']; ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Khóa đào tạo</th>
+                        <td>
+                            <input type="text" name="name" value="<?php echo $data['KhoaDaoTao']; ?>"/>
+                        </td>
+                    </tr>
+                    </table>
+                <input type="hidden" name="id" value="<?php echo $data['MaLop']; ?>"/>
+                <input type="submit" name="edit_lop" value="Lưu" class="save button"/>
+            </form>
+        </dv>
+         <script src="../scripts/dropdown.js"></script>
     </body>
 </html>
