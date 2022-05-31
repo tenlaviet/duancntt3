@@ -1,5 +1,6 @@
 <?php
 session_start();
+require '../permission.php';
 require '../libs/students.php';
 
 if(isset($_GET['id']))

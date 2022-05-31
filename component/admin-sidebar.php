@@ -39,8 +39,8 @@ header('Location: ../login/dangnhap.php');
                         </div>
                     </a>
                     <ul class="sub-menu">
-                        <li><a href="/duancntt3/students/student-profile.php">Profile</a></li>
-                        <li><a href="/duancntt3/students/student-profile-edit.php">Sửa Thông Tin Cá Nhân</a></li>
+                        <li><a href="/duancntt3/giaovien/giaovien-profile.php">Profile</a></li>
+                        <li><a href="/duancntt3/giaovien/giaovien-profile-edit.php">Sửa Thông Tin Cá Nhân</a></li>
                         <li><a href="/duancntt3/login/doimatkhau.php">Đổi Mật Khẩu</a></li>
                     </ul>
                 </li>

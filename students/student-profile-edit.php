@@ -1,9 +1,10 @@
 <?php
  session_start();
+ require '../permission_sinhvien.php';
 require '../libs/students.php';
- 
+ $id =$_SESSION['user_id'];
 // Lấy thông tin hiển thị lên để người dùng sửa
-$id = isset($_GET['id']) ? $_GET['id'] : '';
+
 if ($id){
     $data = get_student($id);
 

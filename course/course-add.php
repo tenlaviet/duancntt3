@@ -2,7 +2,7 @@
 session_start();
 require '../libs/students.php';
 
-
+require '../permission.php';
 
 require_once("../libs/connection.php");
 

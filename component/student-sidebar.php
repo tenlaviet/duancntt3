@@ -26,6 +26,7 @@ header('Location: ../login/dangnhap.php');
             <ul>
                 <li><a href="/duancntt3/students/student-profile.php">Thông Tin Cá Nhân</a></li>
                 <li><a href="/duancntt3/students/student-bangdiem.php">Bảng Điểm</a></li>
+                <li><a href="/duancntt3/login/doimatkhau.php">Đổi mật khẩu</a></li>
             </ul>
         </div>
         <div>

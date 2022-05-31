@@ -50,7 +50,7 @@ session_start();
                 {
                 header('Location: ../students/student-profile.php');
             	}
-                if ($_SESSION["permission"]=='1')
+                if ($_SESSION["permission"]=='1' or $_SESSION["permission"]=='2')
                 {
                 header('Location: ../students/student-list.php');
             	}

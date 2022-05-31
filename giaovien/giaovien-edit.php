@@ -1,5 +1,6 @@
 <?php
 session_start();
+require '../permission.php';
 require '../libs/students.php';
  
 // Lấy thông tin hiển thị lên để người dùng sửa

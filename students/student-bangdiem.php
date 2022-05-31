@@ -1,7 +1,7 @@
 <?php
 session_start();
 require '../libs/students.php';
-
+require '../permission.php';
 ?>
  
 <!DOCTYPE html>

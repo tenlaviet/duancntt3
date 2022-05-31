@@ -1,14 +1,14 @@
 <?php
 session_start();
-require '../permission_sinhvien.php';
 require '../libs/students.php';
+require '../permission.php';
 require_once("../libs/connection.php");
 if(isset($_SESSION['username']))
 {
-    $masv =$_SESSION['username'];
+    $MaGv =$_SESSION['username'];
 }
 
-    //$sql = 'select s.MaSv, s.HoTen, s.GioiTinh, s.NgaySinh, s.MaLop, s.MaCn, s.user_id, u.CMND, u.email, u.SDT FROM `sinhvien` s inner join `user` u on s.user_id = u.id';
+    //$sql = 'select s.MaGv, s.HoTen, s.GioiTinh, s.NgaySinh, s.MaLop, s.MaCn, s.user_id, u.CMND, u.email, u.SDT FROM `sinhvien` s inner join `user` u on s.user_id = u.id';
 
 ?>
 
@@ -37,19 +37,19 @@ header('Location: ../login/dangnhap.php');
         <script src="https://kit.fontawesome.com/19fbdee3eb.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <?php include 'C:\xampp\htdocs\duancntt3\component\student-sidebar.php';?>
+        <?php include 'C:\xampp\htdocs\duancntt3\component\admin-sidebar.php';?>
         <div class="wrapper">
             <h1>Thông Tin Cá Nhân</h1>
             <div class="table-wrapper">
                 <table class="profile-table">
                     <?php
-                    $sql = "select s.MaSv, s.HoTen, s.GioiTinh, s.NgaySinh, s.MaLop, s.MaCn, s.user_id, u.CMND, u.SDT, u.email FROM `sinhvien` s inner join `user` u on s.user_id = u.id where s.MaSv ='$masv';";
+                    $sql = "select g.MaGv, g.HoTen, g.GioiTinh, g.NgaySinh, g.ChuNhiem, g.MaCn, g.user_id, u.CMND, u.SDT, u.email FROM `giaovien` g inner join `user` u on g.user_id = u.id where g.MaGv ='$MaGv';";
                     $students = executeResult($sql);
                     $index = 1;
                     foreach ($students as $item){ ?>
                     <tr>
-                        <th>Mã sinh viên</th>
-                        <td><?php echo $item['MaSv']; ?></td>
+                        <th>Mã giáo viên</th>
+                        <td><?php echo $item['MaGv']; ?></td>
                     </tr>
                     <tr>
                         <th>Họ tên</th>
@@ -64,8 +64,8 @@ header('Location: ../login/dangnhap.php');
                         <td><?php echo $item['NgaySinh']; ?></td>
                     </tr>
                     <tr>
-                        <th>Lớp</th>
-                        <td><?php echo $item['MaLop']; ?></td>
+                        <th>Chủ nhiệm</th>
+                        <td><?php echo $item['ChuNhiem']; ?></td>
                     </tr>
                     <tr>
                         <th>Chuyên ngành</th>
@@ -85,8 +85,8 @@ header('Location: ../login/dangnhap.php');
                     </tr>
                     <?php } ?>
                 </table>
-                <form method="get" action="student-profile-edit.php">
-                    <input onclick="window.location = 'student-profile-edit.php?id=<?php echo $item['user_id']; ?>'" type="button" value="Sửa Thông Tin Cá Nhân" class="fix-profile button"/>
+                <form method="get" action="giaovien-profile-edit.php">
+                    <input onclick="window.location = 'giaovien-profile-edit.php?id=<?php echo $item['user_id']; ?>'" type="button" value="Sửa Thông Tin Cá Nhân" class="fix-profile button"/>
                     <input type="hidden" name="id" value="<?php echo $item['user_id']; ?>"/>
                 </form>
             </div>
