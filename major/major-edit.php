@@ -18,7 +18,8 @@ if (!$data){
 if (!empty($_POST['edit_major']))
 {
     // Lay data
-    $data['TenCn']= isset($_POST['name']) ? $_POST['name'] : '';  
+    $data['TenCn']= isset($_POST['name']) ? $_POST['name'] : '';
+    $macn1= isset($_POST['macn1']) ? $_POST['macn1'] : '';  
     // Validate thong tin
     $errors = array();
     if (empty($data['TenCn'])){
@@ -26,7 +27,7 @@ if (!empty($_POST['edit_major']))
     }
     // Neu ko co loi thi insert
     if (!$errors){
-        edit_major($data['MaCn'], $data['TenCn']);
+        edit_major($data['MaCn'], $macn1, $data['TenCn']);
         // Trở về trang danh sách
         header("location: major-list.php");
     }
@@ -56,6 +57,12 @@ disconnect_db();
             <h1>Sửa chuyên ngành</h1>
             <form method="post" action="major-edit.php?id=<?php echo $data['MaCn']; ?>" class="table-wrapper">
                 <table class="verticle-table">
+                    <tr>
+                        <th>Mã chuyên ngành</th>
+                        <td>
+                            <input type="text" name="macn1" value="<?php echo $data['MaCn']; ?>"/>
+                        </td>
+                    </tr>                    
                     <tr>
                         <th>Tên chuyên ngành</th>
                         <td>

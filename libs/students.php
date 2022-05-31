@@ -291,7 +291,7 @@ function delete_monhoc($monhoc_code)
     return $query;
 }
 
-function edit_monhoc($monhoc_code, $monhoc_name)
+function edit_monhoc($monhoc_code, $monhoc_code1, $monhoc_name)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
@@ -302,12 +302,13 @@ function edit_monhoc($monhoc_code, $monhoc_name)
     // Chống SQL Injection
     $monhoc_name       = addslashes($monhoc_name);
     $monhoc_code = addslashes($monhoc_code);
+    $monhoc_code1 = addslashes($monhoc_code1);
     
     
     // Câu truy sửa
     
     $sql = " 
-    UPDATE `monhoc` SET `TenMon`='$monhoc_name' WHERE MaMon = '$monhoc_code'
+    UPDATE `monhoc` SET `MaMon`='$monhoc_code1',`TenMon`='$monhoc_name' WHERE MaMon = '$monhoc_code'
     ";
     
     // Thực hiện câu truy vấn
@@ -418,7 +419,7 @@ function delete_major($major_code)
     return $query;
 }
 
-function edit_major($major_code, $major_name)
+function edit_major($major_code, $major_code1, $major_name)
 {
     // Gọi tới biến toàn cục $conn
     global $conn;
@@ -434,7 +435,7 @@ function edit_major($major_code, $major_name)
     // Câu truy sửa
     
     $sql = " 
-    UPDATE `major` SET `TenCn`='$major_name' WHERE `MaCn` = '$major_code';
+    UPDATE `major` SET `TenCn`='$major_name', `MaCn` = '$major_code1' WHERE `MaCn` = '$major_code';
     ";
     
     // Thực hiện câu truy vấn
@@ -561,7 +562,7 @@ function edit_lop($lop_code, $lop_code1, $lop_cn, $lop_name)
     // Câu truy sửa
     
     $sql = " 
-    UPDATE `lop` SET `MaLop`='$lop_code',`MaCn`='$lop_cn',`KhoaDaoTao`='$lop_name' WHERE `MaLop` = '$lop_code1';
+    UPDATE `lop` SET `MaLop`='$lop_code1',`MaCn`='$lop_cn',`KhoaDaoTao`='$lop_name' WHERE `MaLop` = '$lop_code';
     ";
     
     // Thực hiện câu truy vấn

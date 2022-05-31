@@ -18,7 +18,8 @@ if (!$data){
 if (!empty($_POST['edit_monhoc']))
 {
     // Lay data
-    $data['TenMon']= isset($_POST['name']) ? $_POST['name'] : '';  
+    $data['TenMon']= isset($_POST['name']) ? $_POST['name'] : '';
+    $mamon1= isset($_POST['mamon1']) ? $_POST['mamon1'] : '';   
     // Validate thong tin
     $errors = array();
     if (empty($data['TenMon'])){
@@ -26,7 +27,7 @@ if (!empty($_POST['edit_monhoc']))
     }
     // Neu ko co loi thi insert
     if (!$errors){
-        edit_monhoc($data['MaMon'], $data['TenMon']);
+        edit_monhoc($data['MaMon'], $mamon1, $data['TenMon']);
         // Trở về trang danh sách
         header("location: monhoc-list.php");
     }
@@ -56,6 +57,12 @@ disconnect_db();
             <h1>Thêm môn học</h1>
             <form method="post" action="monhoc-edit.php?id=<?php echo $data['MaMon']; ?>" class="table-wrapper">
                 <table class="verticle-table">
+                    <tr>
+                        <th>Mã môn</th>
+                        <td>
+                            <input type="text" name="mamon1" value="<?php echo $data['MaMon']; ?>"/>
+                        </td>
+                    </tr>
                     <tr>
                         <th>Tên môn</th>
                         <td>

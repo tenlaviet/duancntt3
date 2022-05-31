@@ -19,6 +19,7 @@ if (!empty($_POST['edit_lop']))
     // Lay data
     //$data['MaLop']= isset($_POST['malop']) ? $_POST['malop'] : '';
     $data['KhoaDaoTao']= isset($_POST['name']) ? $_POST['name'] : '';
+    $data['MaCn']= isset($_POST['macn']) ? $_POST['macn'] : '';
     $malop = isset($_POST['malop1']) ? $_POST['malop1'] : '';  
     
     // Validate thong tin
@@ -65,6 +66,12 @@ disconnect_db();
                     <td>Mã lớp</td>
                     <td>
                         <input type="text" name="malop1" value="<?php echo $data['MaLop']; ?>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mã chuyên ngành</td>
+                    <td>
+                        <input type="text" name="macn" value="<?php echo $data['MaCn']; ?>"/>
                     </td>
                 </tr>
                 <tr>
