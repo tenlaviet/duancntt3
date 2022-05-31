@@ -14,7 +14,7 @@ if(isset($_SESSION['username']))
 <?php
 if(isset($_GET['logout'])) {
 session_destroy();
-header('Location: login/dangnhap.php');
+header('Location: ../login/dangnhap.php');
 }
 ?>
  
@@ -90,5 +90,10 @@ header('Location: login/dangnhap.php');
                 </form>
             </div>
         </div>
+
+
+
+     
+
     </body>
 </html>

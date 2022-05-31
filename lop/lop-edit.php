@@ -17,13 +17,14 @@ if (!$data){
 if (!empty($_POST['edit_lop']))
 {
     // Lay data
-    $data['MaCn']= isset($_POST['macn']) ? $_POST['macn'] : '';
-    $data['KhoaDaoTao']= isset($_POST['name']) ? $_POST['name'] : '';  
+    //$data['MaLop']= isset($_POST['malop']) ? $_POST['malop'] : '';
+    $data['KhoaDaoTao']= isset($_POST['name']) ? $_POST['name'] : '';
+    $malop = isset($_POST['malop1']) ? $_POST['malop1'] : '';  
     
     // Validate thong tin
     $errors = array();
-    if (empty($data['MaCn'])){
-        $errors['MaCn'] = 'Vui lòng không để trống';
+    if (empty($data['MaLop'])){
+        $errors['MaLop'] = 'Vui lòng không để trống';
     }	
 
     if (empty($data['KhoaDaoTao'])){
@@ -34,7 +35,7 @@ if (!empty($_POST['edit_lop']))
 
 
 	if (!$errors){
-        edit_lop($data['MaLop'], $data['MaCn'], $data['KhoaDaoTao']);
+        edit_lop($data['MaLop'], $malop, $data['MaCn'], $data['KhoaDaoTao']);
         
 	
 
@@ -70,9 +71,9 @@ disconnect_db();
             <form method="post" action="lop-edit.php?id=<?php echo $data['MaLop']; ?>" class="table-wrapper">
                 <table class="verticle-table">
                     <tr>
-                        <th>Mã chuyên ngành</th>
+                        <th>Mã lớp</th>
                         <td>
-                            <input type="text" name="macn" value="<?php echo $data['MaCn']; ?>"/>
+                            <input type="text" name="malop1" value="<?php echo $data['MaLop']; ?>"/>
                         </td>
                     </tr>
                     <tr>
@@ -85,7 +86,7 @@ disconnect_db();
                 <input type="hidden" name="id" value="<?php echo $data['MaLop']; ?>"/>
                 <input type="submit" name="edit_lop" value="Lưu" class="save button"/>
             </form>
-        </dv>
-         <script src="../scripts/dropdown.js"></script>
+        </div>
+        <script src="../scripts/dropdown.js"></script>
     </body>
 </html>

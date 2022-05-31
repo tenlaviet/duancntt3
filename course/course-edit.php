@@ -52,9 +52,7 @@ if (!empty($_POST['edit_course']))
     if (empty($data['Ca'])){
         $errors['Ca'] = 'Vui lòng không để trống';
     }
-    if (empty($data['NgayThi'])){
-    $errors['NgayThi'] = 'Vui lòng không để trống';
-    }
+
 
      
     // Neu ko co loi thi insert
